@@ -14,7 +14,7 @@ git push -u origin main
 Na primeira vez que você ligar este repositório ao remoto, use também:
 
 ```bash
-git push -u origin main
+git push -u origin main 
 ```
 
 Depois disso, `git push origin main` (ou só `git push`, se o upstream já estiver configurado) costuma bastar.
