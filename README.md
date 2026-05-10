@@ -45,3 +45,14 @@ O Git costuma ficar em `C:\Program Files\Git\cmd`. Adicione essa pasta ao **PATH
 git config --global user.name "Seu Nome"
 git config --global user.email "seu@email.com"
 ```
+
+## Deploy na Vercel (HTML)
+
+A Vercel **aceita HTML estático**; o que costuma confundir é que a URL raiz (`/`) procura **`index.html`**. Este projeto usa **`planilha-main.html`**, então há um **`vercel.json`** que redireciona internamente `/` para esse arquivo.
+
+1. Conecte o repositório GitHub na Vercel e faça deploy do branch **`main`**.
+2. Em **Framework Preset**, escolha **Other** (ou deixe em detecção automática; sem `package.json` costuma cair em site estático).
+3. **Root Directory**: raiz do repo (`.`).
+4. Não é obrigatório comando de build; os arquivos da raiz são publicados.
+
+Depois do deploy, abra a URL do projeto: o dashboard deve abrir em `/`. Também funciona direto em `/planilha-main.html`.
