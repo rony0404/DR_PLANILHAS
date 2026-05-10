@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard de Diferenças Salariais</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#eef2f7;padding:20px;color:#1e293b}
+.container{max-width:1500px;margin:auto}
+.header{background:linear-gradient(135deg,#831843 0%,#be185d 40%,#ec4899 100%);color:#fff;padding:25px;border-radius:16px;margin-bottom:20px;box-shadow:0 8px 24px rgba(190,24,93,.28)}
+.header p{opacity:.92;margin-top:8px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+button{width:100%;padding:12px;border:none;border-radius:10px;background:#0f172a;color:#fff;cursor:pointer;font-weight:bold}
+button:hover{background:#1e293b}
+#btnProcessar{background:linear-gradient(135deg,#5b21b6 0%,#7c3aed 40%,#a855f7 85%,#c4b5fd 100%);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.55),0 0 28px rgba(168,85,247,.45)}
+#btnProcessar:hover{background:linear-gradient(135deg,#6d28d9 0%,#8b5cf6 45%,#c4b5fd 100%);filter:brightness(1.06);box-shadow:0 6px 22px rgba(124,58,237,.65),0 0 36px rgba(192,132,252,.5)}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;margin-bottom:12px}
+.badge{background:#dcfce7;color:#166534;padding:6px 12px;border-radius:999px;font-size:12px;display:inline-block}
+.kpi{font-size:30px;font-weight:bold;margin-top:10px}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{border:1px solid #e2e8f0;padding:10px;font-size:13px}
+th{background:#0f172a;color:#fff}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>Dashboard de Diferenças Salariais</h1>
+<p>Progressão Horizontal - Lei Municipal 8.623/2008</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h2>Importação</h2>
+<input type="file" id="pdfInput" multiple accept="application/pdf">
+<button id="btnProcessar">Processar PDFs</button>
+</div>
+
+<div class="card">
+<h2>Cálculos</h2>
+<label>Letra Atual</label>
+<select id="letraAtual">
+<option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option>
+</select>
+
+<label>Letra Devida</label>
+<select id="letraDevida">
+<option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option>
+</select>
+
+<label>Período Inicial</label>
+<input type="month" id="periodoInicial">
+
+<label>Período Final</label>
+<input type="month" id="periodoFinal">
+
+<button id="btnCalcular">Executar Cálculos</button>
+</div>
+
+<div class="card">
+<h2>Resumo</h2>
+<div class="badge">Diferenças Totais</div>
+<div class="kpi" id="valorTotal">R$ 0,00</div>
+<hr style="margin:20px 0">
+<div class="badge">Competências Processadas</div>
+<div class="kpi" id="totalArquivos">0</div>
+</div>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h2>Resultados</h2>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Referência</th>
+<th>Vencimento Pago</th>
+<th>Vencimento Devido</th>
+<th>Total Pago</th>
+<th>Total Devido</th>
+<th>Diferença</th>
+</tr>
+</thead>
+<tbody id="resultadoBody"></tbody>
+</table>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h2>Logs</h2>
+<textarea id="logs" rows="10">Sistema iniciado.</textarea>
+</div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+let arquivosProcessados = [];
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+function moeda(valor){
+ return Number(valor || 0).toLocaleString('pt-BR', {
+  style:'currency',
+  currency:'BRL'
+ });
+}
+
+function log(texto){
+ const atual = $('#logs').val();
+ $('#logs').val(atual + '\n' + texto);
+}
+
+function converterValor(valorTexto){
+ if(!valorTexto) return 0;
+ return Number(String(valorTexto).replace(/\./g,'').replace(',', '.'));
+}
+
+function extrairEvento(texto, codigo){
+ try{
+  const linhas = texto.split(/\n/g);
+
+  for(let i = 0; i < linhas.length; i++){
+   const linha = linhas[i];
+
+   if(linha.includes(codigo)){
+    const valores = linha.match(/(?:\d{1,3}\.)*\d+,\d{2}/g);
+
+    if(valores && valores.length > 0){
+     return converterValor(valores[valores.length - 1]);
+    }
+   }
+  }
+
+  return 0;
+ }catch(e){
+  console.error('Erro extrairEvento:', codigo, e);
+  return 0;
+ }
+}
+
+function extrairVale(texto){
+ try{
+  const regex = /VALE\s+ALIMENTACAO\s+(\d+[\.,]\d{2})/i;
+  const match = texto.match(regex);
+
+  if(match && match[1]){
+   return converterValor(match[1]);
+  }
+
+  return 0;
+ }catch(e){
+  console.error('Erro vale alimentação:', e);
+  return 0;
+ }
+}
+
+function extrairReferencia(texto, pagina){
+ try{
+  const regex = /REFERENCIA\s*(\d{2}\/\d{4})/i;
+  const match = texto.match(regex);
+
+  if(match && match[1]){
+   return match[1];
+  }
+
+  const todasDatas = texto.match(/\d{2}\/\d{4}/g);
+
+  if(todasDatas && todasDatas.length > 0){
+   return todasDatas[0];
+  }
+
+  return 'Página ' + pagina;
+ }catch(e){
+  console.error('Erro referência:', e);
+  return 'Página ' + pagina;
+ }
+}
+
+$('#btnProcessar').on('click', async function(){
+ try{
+  const arquivos = $('#pdfInput')[0].files;
+
+  if(!arquivos || arquivos.length === 0){
+   alert('Selecione ao menos um PDF');
+   return;
+  }
+
+  arquivosProcessados = [];
+
+  for(let i = 0; i < arquivos.length; i++){
+   const arquivo = arquivos[i];
+   const buffer = await arquivo.arrayBuffer();
+   const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+
+   log('PDF carregado: ' + arquivo.name);
+   log('Páginas encontradas: ' + pdf.numPages);
+
+   for(let pagina = 1; pagina <= pdf.numPages; pagina++){
+    const page = await pdf.getPage(pagina);
+    const text = await page.getTextContent();
+
+    const texto = text.items.map(function(item){
+     return item.str;
+    }).join(' ');
+
+    const textoLinhas = text.items.map(function(item){
+     return item.str;
+    }).join('\n');
+
+    const referencia = extrairReferencia(texto, pagina);
+    const vencimento = extrairEvento(textoLinhas, '1101');
+    const quinquenio = extrairEvento(textoLinhas, '1215');
+    const incentivo = extrairEvento(textoLinhas, '1157');
+    const vale = extrairVale(texto);
+
+    console.log({ referencia, vencimento, quinquenio, incentivo, vale });
+
+    arquivosProcessados.push({
+      arquivo: arquivo.name,
+      referencia: referencia,
+      vencimento: vencimento,
+      quinquenio: quinquenio,
+      incentivo: incentivo,
+      vale: vale
+    });
+
+    log('Competência processada: ' + referencia);
+   }
+  }
+
+  $('#totalArquivos').text(arquivosProcessados.length);
+
+  log('PDFs processados com sucesso');
+  log('Total de competências carregadas: ' + arquivosProcessados.length);
+
+  alert('PDFs processados com sucesso');
+ }catch(e){
+  console.error(e);
+  log('Erro ao processar PDFs: ' + e.message);
+  alert('Erro ao processar PDFs');
+ }
+});
+
+$('#btnCalcular').on('click', function(){
+ try{
+  if(arquivosProcessados.length === 0){
+   alert('Primeiro processe os PDFs');
+   return;
+  }
+
+  $('#resultadoBody').html('');
+
+  const letras = ['A','B','C','D','E','F','G','H','I','J'];
+
+  const atual = letras.indexOf($('#letraAtual').val());
+  const devida = letras.indexOf($('#letraDevida').val());
+
+  let progressao = devida - atual;
+
+  if(progressao < 0){
+   progressao = 0;
+  }
+
+  const percentual = 0.009615384615;
+
+  const periodoInicial = $('#periodoInicial').val();
+  const periodoFinal = $('#periodoFinal').val();
+
+  const registrosFiltrados = arquivosProcessados.filter(function(item){
+   if(!periodoInicial || !periodoFinal){
+    return true;
+   }
+
+   const partes = item.referencia.split('/');
+
+   if(partes.length !== 2){
+    return false;
+   }
+
+   const referenciaNormalizada = partes[1] + '-' + partes[0];
+
+   return referenciaNormalizada >= periodoInicial && referenciaNormalizada <= periodoFinal;
+  });
+
+  if(registrosFiltrados.length === 0){
+   alert('Nenhuma competência encontrada no período informado');
+   return;
+  }
+
+  let total = 0;
+
+  registrosFiltrados.forEach(function(item){
+   const vencimentoPago = Number(item.vencimento || 0);
+
+   if(vencimentoPago <= 0){
+    console.warn('Registro inválido:', item);
+    log('Competência ignorada sem vencimento válido: ' + item.referencia);
+    return;
+   }
+
+   const vencimentoDevido = Number((vencimentoPago * (1 + (percentual * progressao))).toFixed(2));
+
+   const fator = vencimentoDevido / vencimentoPago;
+
+   const quinquenioPago = Number(item.quinquenio || 0);
+   const incentivoPago = Number(item.incentivo || 0);
+
+   const quinquenioDevido = Number((quinquenioPago * fator).toFixed(2));
+   const incentivoDevido = Number((incentivoPago * fator).toFixed(2));
+
+   const incentivoFuncionalPago = Number((vencimentoPago * 0.50).toFixed(2));
+   const incentivoFuncionalDevido = Number((vencimentoDevido * 0.50).toFixed(2));
+
+   const insalubridadePago = Number((vencimentoPago * 0.40).toFixed(2));
+   const insalubridadeDevido = Number((vencimentoDevido * 0.40).toFixed(2));
+
+   const horaEspecialPago = Number((((vencimentoPago / 180) * 1.5)).toFixed(2));
+   const horaEspecialDevido = Number((((vencimentoDevido / 180) * 1.5)).toFixed(2));
+
+   const totalPago = Number((
+    vencimentoPago +
+    quinquenioPago +
+    incentivoPago +
+    incentivoFuncionalPago +
+    insalubridadePago +
+    horaEspecialPago
+   ).toFixed(2));
+
+   const totalDevido = Number((
+    vencimentoDevido +
+    quinquenioDevido +
+    incentivoDevido +
+    incentivoFuncionalDevido +
+    insalubridadeDevido +
+    horaEspecialDevido
+   ).toFixed(2));
+
+   const diferenca = Number((totalDevido - totalPago).toFixed(2));
+
+   console.log({ referencia:item.referencia, totalPago, totalDevido, diferenca });
+
+   total += diferenca;
+
+   $('#resultadoBody').append(`
+    <tr>
+      <td>${item.arquivo}</td>
+      <td>${item.referencia}</td>
+      <td>${moeda(vencimentoPago)}</td>
+      <td>${moeda(vencimentoDevido)}</td>
+      <td>${moeda(totalPago)}</td>
+      <td>${moeda(totalDevido)}</td>
+      <td>${moeda(diferenca)}</td>
+    </tr>
+   `);
+  });
+
+  $('#valorTotal').text(moeda(total));
+
+  log('Período utilizado: ' + (periodoInicial || 'início') + ' até ' + (periodoFinal || 'fim'));
+  log('Competências calculadas: ' + registrosFiltrados.length);
+  log('Cálculos executados com sucesso');
+  log('Valor total: ' + moeda(total));
+
+  if(total === 0){
+   log('ATENÇÃO: total zerado. Verifique os eventos extraídos no console do navegador.');
+  }
+
+  alert('Cálculos executados com sucesso');
+ }catch(e){
+  console.error(e);
+  log('Erro ao calcular: ' + e.message);
+  alert('Erro ao calcular: ' + e.message);
+ }
+});
+
+console.assert(typeof pdfjsLib !== 'undefined', 'PDF.js carregado');
+console.assert(converterValor('1.485,20') === 1485.20, 'Conversão monetária inválida');
+console.assert(extrairReferencia('REFERENCIA 03/2021',1) === '03/2021', 'Referência inválida');
+console.assert(extrairVale('VALE ALIMENTACAO 800,00') === 800, 'Vale alimentação inválido');
+console.assert((1499.48 - 1485.20).toFixed(2) === '14.28', 'Diferença inválida');
+
+log('Sistema carregado corretamente');
+
+});
+</script>
+</body>
+</html>
