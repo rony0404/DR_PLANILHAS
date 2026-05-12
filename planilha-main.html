@@ -9,7 +9,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#eef2f7;padding:20px;color:#1e293b}
-.container{max-width:1500px;margin:auto}
+.container{max-width:1680px;margin:auto}
 .header{background:linear-gradient(135deg,#831843 0%,#be185d 40%,#ec4899 100%);color:#fff;padding:25px;border-radius:16px;margin-bottom:20px;box-shadow:0 8px 24px rgba(190,24,93,.28)}
 .header p{opacity:.92;margin-top:8px;font-size:15px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
@@ -24,20 +24,41 @@ input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-ra
 table{width:100%;border-collapse:collapse;margin-top:15px}
 th,td{border:1px solid #e2e8f0;padding:10px;font-size:13px}
 th{background:#0f172a;color:#fff}
-.tbl-planilha thead th{background:#1e293b;color:#fff;font-weight:600;font-size:12px;padding:10px 8px;white-space:normal;vertical-align:bottom}
-.tbl-planilha tbody td{padding:8px;font-size:13px;vertical-align:middle}
-.tbl-planilha .td-num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.tbl-planilha .td-mes{text-align:left;white-space:nowrap}
-.tbl-planilha .td-arq{text-align:left;max-width:140px;word-break:break-all;font-size:11px}
+.tbl-planilha{width:100%;margin-top:0;border-collapse:collapse}
+.tbl-planilha thead th{background:#1e293b;color:#fff;font-weight:600;font-size:12px;padding:14px 12px;white-space:normal;vertical-align:bottom;line-height:1.45}
+.tbl-planilha tbody td{padding:12px 12px;font-size:13px;vertical-align:middle}
+.tbl-planilha .td-num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;min-width:96px}
+.tbl-planilha .td-mes{text-align:left;white-space:nowrap;min-width:76px}
+.tbl-planilha .td-arq{text-align:left;min-width:168px;max-width:260px;font-size:12px;line-height:1.4;word-break:break-word;overflow-wrap:anywhere}
 .tbl-planilha .td-sit{text-align:left;font-weight:600}
 .tbl-planilha .linha-pago{background:#fff}
 .tbl-planilha .linha-devido{background:#f1f5f9}
 .tbl-planilha .td-dif{font-weight:700;text-align:right;vertical-align:middle;background:#fefce8}
 .tbl-planilha .td-traco{text-align:center;color:#94a3b8}
-.tbl-planilha .titulo-ano td{background:#94a3b8;color:#0f172a;font-weight:700;font-size:13px;padding:12px 10px;letter-spacing:0.02em}
-.tbl-planilha .footer-ano td{background:#cbd5e1;font-weight:700;border-top:1px solid #64748b}
+.tbl-planilha .titulo-ano td{background:#94a3b8;color:#0f172a;font-weight:700;font-size:13px;padding:14px 12px;letter-spacing:0.02em}
+.tbl-planilha .footer-ano td{background:#cbd5e1;font-weight:700;border-top:1px solid #64748b;padding:12px 12px}
 .tbl-planilha .footer-ano .td-num,.tbl-planilha .footer-ano .td-sub{color:#0f172a}
-.tbl-wrap{overflow-x:auto;margin-top:12px}
+.tbl-planilha .cfg-ano-pct td{background:#e2e8f0;font-size:12px;line-height:1.45;vertical-align:middle;padding:14px 12px}
+.tbl-planilha .cfg-ano-pct .cfg-pct-label{display:block;font-size:10px;font-weight:600;color:#475569;margin:0 0 6px 0;text-transform:uppercase;letter-spacing:.03em}
+.tbl-planilha .cfg-ano-pct .td-num{text-align:right;min-width:108px}
+.tbl-planilha .cfg-ano-pct select{display:block;width:100%;min-width:7.5rem;max-width:100%;box-sizing:border-box;padding:8px 10px;margin:0;font-weight:600;border-radius:8px}
+.tbl-planilha .cfg-ano-pct .td-arq{white-space:nowrap;min-width:88px;max-width:none}
+.tbl-planilha .td-arq .lbl-chk-comp{display:flex;align-items:center;justify-content:center;gap:0;cursor:pointer;font-size:11px;line-height:1;margin:0}
+.tbl-planilha .td-arq .chk-excluir-comp{flex-shrink:0;margin:0}
+.tbl-planilha .td-arq.td-arq-chk{min-width:36px;max-width:44px;width:40px;padding:8px 6px;text-align:center;vertical-align:middle}
+.tbl-planilha tr.toolbar-ano td{background:#f8fafc;border-bottom:1px solid #e2e8f0}
+.tbl-planilha .td-toolbar-ano{padding:12px 14px;vertical-align:middle}
+.toolbar-ano-inner{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.toolbar-ano-inner .tbar-hint{font-size:11px;color:#64748b;margin-right:4px}
+.toolbar-ano-inner input[type="text"]{width:auto;min-width:0;max-width:140px;flex:0 1 120px;margin:0;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:12px}
+.toolbar-ano-inner .inp-comp-ref-ano{flex:1 1 130px;max-width:160px}
+.toolbar-ano-inner .inp-comp-venc-ano{flex:1 1 110px;max-width:140px}
+.toolbar-ano-inner .inp-comp-he-ano,.toolbar-ano-inner .inp-comp-ab-ano{flex:0 1 88px;max-width:100px}
+.toolbar-ano-inner button{width:auto;margin:0;padding:9px 16px;font-size:12px;flex:0 0 auto}
+.tbl-wrap{overflow-x:auto;margin-top:0}
+.card-calculos-min{display:flex;flex-direction:column;justify-content:center;min-height:108px}
+button.btn-perigo{background:#b91c1c}
+button.btn-perigo:hover{background:#991b1b}
 </style>
 </head>
 <body>
@@ -54,29 +75,8 @@ th{background:#0f172a;color:#fff}
 <button id="btnProcessar">Processar PDFs</button>
 </div>
 
-<div class="card">
-<h2>Cálculos</h2>
-<label>Letra Atual</label>
-<select id="letraAtual">
-<option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option>
-</select>
-
-<label>Letra Devida</label>
-<select id="letraDevida">
-<option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option>
-</select>
-
-<label>Período Inicial</label>
-<input type="month" id="periodoInicial">
-
-<label>Período Final</label>
-<input type="month" id="periodoFinal">
-
-<label style="margin-top:4px;display:block;font-size:14px;line-height:1.45"><input type="checkbox" id="forcarSoPercentuais"> Forçar <strong>só os percentuais legais (20% / 50% / 40%)</strong> nas colunas B–E — não usa valores de quinquênio/incentivo/insalubridade lidos do PDF (útil se a diferença estiver alta por ruído do texto). Mantém apenas <strong>hora especial</strong> quando aparecer bem identificada.</label>
-
-<p style="font-size:13px;color:#64748b;margin-bottom:12px;line-height:1.45">No Excel <strong>diferença_prog._horizontal</strong>, por competência: <strong>diferença = SOMA(B:F) na linha DEVIDO − SOMA(B:F) na linha PAGO</strong> (hora especial dentro de F quando existir). A coluna ADIC é <strong>só para conferência</strong> (= O÷180+O÷180×87,5%) e não entra nessa soma nem na diferença. Com PAGO igual ao PDF e todas as parcelas evoluindo no mesmo ganho proporcional ao 1101, <strong>diferença ≈ ((v<sub>devido</sub>÷v<sub>pago</sub>)−1) × O<sub>pago</sub></strong> — ex.: ago/2022 ≈ O×((1701,91÷1685,70)−1) ≈ linha útil para auditar valores inflados por leitura do PDF.</p>
-
-<button id="btnCalcular">Executar Cálculos</button>
+<div class="card card-calculos-min">
+<button type="button" id="btnCalcular">Atualizar tabela / recalcular</button>
 </div>
 
 <div class="card">
@@ -91,7 +91,7 @@ th{background:#0f172a;color:#fff}
 
 <div class="card" style="margin-top:20px">
 <h2>Resultados</h2>
-<p style="font-size:13px;color:#64748b;margin-bottom:8px">Por ano: cada bloco igual à planilha; ao final do ano aparece automaticamente uma competência <strong>13º</strong>, calculada com a mesma fórmula (base do salário-base do <strong>mês de dezembro</strong> desse ano, ou no último mês holerite disponível se não houver 12/ANO).</p>
+<p style="font-size:13px;color:#64748b;margin-bottom:8px">Cada bloco = um ano civil. Acima de cada ano use <strong>Adicionar linha</strong> / <strong>Excluir marcadas</strong> (só retira selecionadas daquele ano). Ajuste na linha cinza <strong>quinquênio</strong>, <strong>insalubridade</strong> e <strong>Profis (9–12)</strong>. Incentivo funcional é <strong>fixo por mês</strong> (50% até ago/2022 · 90% desde set/2022). <strong>Diferença</strong> = total DEVIDO − total PAGO. Passe o mouse no checkbox da coluna Arquivo para ver o nome do PDF.</p>
 <div class="tbl-wrap">
 <table class="tbl-planilha">
 <thead>
@@ -104,15 +104,16 @@ th{background:#0f172a;color:#fff}
 <th>adic. Incent. Funcional</th>
 <th>insalubridade</th>
 <th>hora especial</th>
+<th>ADIC.INCENT.PROFIS.</th>
+<th>ABONO PERMANENCIA</th>
 <th>total</th>
-<th>ADIC serv. extra esp.<br><span style="font-weight:400;opacity:.9">(O÷180+O÷180×87,5%)</span></th>
 <th>diferença</th>
 </tr>
 </thead>
 <tbody id="resultadoBody"></tbody>
 <tfoot id="resultadoFoot" style="display:none">
 <tr>
-<td colspan="10" class="td-num" style="text-align:right;background:#e2e8f0;padding:10px">TOTAL DIFERENÇA (soma competências)</td>
+<td colspan="11" class="td-num" style="text-align:right;background:#e2e8f0;padding:12px 14px">TOTAL DIFERENÇA (soma competências)</td>
 <td class="td-dif" id="resultadoTotalCell" style="background:#fde68a"></td>
 </tr>
 </tfoot>
@@ -150,6 +151,38 @@ function converterValor(valorTexto){
  return Number(String(valorTexto).replace(/\./g,'').replace(',', '.'));
 }
 
+/** Para refazer trecho só com valores filtrados (ex.: tirar “900,0” que vence o provento na linha 1157). */
+function montarTrechoValoresPt(vals){
+ return (vals || []).map(function(x){
+  const t = Number(x).toFixed(2).split('.');
+  const intp = t[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return intp + ',' + t[1];
+ }).join(' ');
+}
+
+/** Quando a linha traz base alta (ex. 900,0 lida como 900) e o provento real fica abaixo de uma fração do 1101, restringe candidatos a valores ≤ frac×vp (ex. ~9% do venc.). */
+function ajustarValorProventoAbaixoFracVp(linhaStr, v, vp, fracMax){
+ const vpN = Number(vp || 0);
+ const frac = Number(fracMax != null ? fracMax : 0.4);
+ if(vpN < 120 || !linhaStr){
+  return Number(v || 0);
+ }
+ const limCap = vpN * frac;
+ const raw = valoresMoedaTrecho(linhaStr);
+ const baseFiltr = filtrarValoresLinhaEvento(raw, vpN);
+ const candidatos = baseFiltr.filter(function(x){
+  return x <= limCap && x >= vpN * 0.015;
+ });
+ if(candidatos.length){
+  const trecho = montarTrechoValoresPt(candidatos);
+  const v2 = escolherValorProventoNaLinha(trecho, vpN);
+  if(v2 > 0){
+   return v2;
+  }
+ }
+ return Number(v || 0);
+}
+
 const REG_VALOR_PT = '(?:\\d{1,3}\\.)*\\d+,\\d{2}';
 
 function valoresMoedaTrecho(trecho){
@@ -184,41 +217,217 @@ function medianaNumeros(arr){
  return (a[m - 1] + a[m]) / 2;
 }
 
-/** Evita pegar um “valor gigante” agregado na mesma linha; favorece mediana ou 2º maior quando há outlier óbvio. */
+/** Evita pegar um “valor gigante” agregado na mesma linha; favorece mediana ou 2º maior quando há outlier óbvio.
+ *  Mesmo número em duas colunas (ex.: base = proventos no holerite) tem prioridade. Com exatamente 2 valores, usa o maior — nunca o menor por regra de outlier. */
 function escolherValorProventoNaLinha(linhaStr, referenciaVp){
  const raw = valoresMoedaTrecho(linhaStr);
  const f = filtrarValoresLinhaEvento(raw, referenciaVp);
  if(!f.length) return 0;
  if(f.length === 1) return Number(Number(f[0]).toFixed(2));
- const asc = f.slice().sort(function(a, b){
+
+ const arred = f.map(function(x){
+  return Number(Number(x).toFixed(2));
+ });
+ const freq = {};
+ let zi;
+ for(zi = 0; zi < arred.length; zi++){
+  const k = String(arred[zi]);
+  freq[k] = (freq[k] || 0) + 1;
+ }
+ let melhorDup = null;
+ Object.keys(freq).forEach(function(ks){
+  const v = Number(ks);
+  const c = freq[ks];
+  if(c >= 2){
+   if(melhorDup === null || v > melhorDup){
+    melhorDup = v;
+   }
+  }
+ });
+ if(melhorDup !== null){
+  return melhorDup;
+ }
+
+ const asc = arred.slice().sort(function(a, b){
   return a - b;
  });
+ if(asc.length === 2){
+  return Number(asc[asc.length - 1].toFixed(2));
+ }
  const maxv = asc[asc.length - 1];
  const sumMenores = asc.slice(0, -1).reduce(function(z, x){
   return z + x;
  }, 0);
- if(maxv > sumMenores * 1.4 && asc.length >= 2){
+ if(asc.length >= 3 && maxv > sumMenores * 1.4){
   return Number(asc[asc.length - 2].toFixed(2));
  }
- const med = medianaNumeros(f);
+ const med = medianaNumeros(asc);
  return med !== null ? Number(Number(med).toFixed(2)) : 0;
 }
 
-function extrairValorProventoPorCodigo(referenciaVp, textoLinhas, textoCompacto, codigo){
+/** Qtde típica (900,0 = 9% / 1200,0 = 12%) ou coluna 100% — não é o provento da rubrica. */
+function valorMoedaEhQtdeOuPercentualProfis(n){
+ const x = Number(n || 0);
+ if(Math.abs(x - 100) < 2) return true;
+ if(Math.abs(x - 900) < 2 || Math.abs(x - 1200) < 2) return true;
+ return false;
+}
+
+/**
+ * Coluna **Proventos** do código **1157 / ADIC.INCENT.PROFIS.**: usa o valor como no holerite (não recalcula %).
+ * Prioridade: com **Qtde 9% (900)** na linha → menor montante na faixa típica (~3,5%–17% do 1101) → valor repetido → dois+ nessa faixa sem 900 → **menor** → última moeda plausível excl. Qtde 900/1200/100.
+ */
+function escolherValorProventoLinhaProfis1157(linhaStr, referenciaVp){
+ const vp = Number(referenciaVp || 0);
+ const s = String(linhaStr || '');
+ const todas = valoresMoedaTrecho(s).map(converterValor).filter(function(n){
+  return filtrarValoresLinhaEvento([n], vp).length > 0 && n >= 0.02;
+ });
+ if(!todas.length){
+  return 0;
+ }
+
+ let trabalho = todas.filter(function(n){
+  return !valorMoedaEhQtdeOuPercentualProfis(n);
+ });
+ if(!trabalho.length){
+  trabalho = todas.slice();
+ }
+
+ const tinhaQtde900Ref = todas.some(function(n){
+  return Math.abs(n - 900) < 2;
+ });
+ const tinhaQtde1200Ref = todas.some(function(n){
+  return Math.abs(n - 1200) < 2;
+ });
+ /** Com Qtde 9% (900) e sem 1200, o provento correto nunca é o “maior duplicado” se o OCR repetir coluna errada: usa o menor montante na faixa típica. */
+ if(tinhaQtde900Ref && !tinhaQtde1200Ref){
+  const plaus9 = trabalho.filter(function(n){
+   return vp < 120 || (n >= vp * 0.035 && n <= vp * 0.17);
+  });
+  if(plaus9.length){
+   return Number(Number(Math.min.apply(null, plaus9)).toFixed(2));
+  }
+ }
+
+ const freq = {};
+ let zi;
+ for(zi = 0; zi < trabalho.length; zi++){
+  const k = String(Number(trabalho[zi].toFixed(2)));
+  freq[k] = (freq[k] || 0) + 1;
+ }
+ let melhorDup = null;
+ Object.keys(freq).forEach(function(ks){
+  const v = Number(ks);
+  const c = freq[ks];
+  if(c >= 2){
+   if(melhorDup === null || v > melhorDup){
+    melhorDup = v;
+   }
+  }
+ });
+ if(melhorDup !== null && melhorDup > 0){
+  return Number(Number(melhorDup).toFixed(2));
+ }
+
+ const plausMult = trabalho.filter(function(n){
+  return vp < 120 || (n >= vp * 0.035 && n <= vp * 0.17);
+ });
+ if(plausMult.length >= 2){
+  const m = Math.min.apply(null, plausMult);
+  return Number(Number(m).toFixed(2));
+ }
+ if(plausMult.length === 1){
+  return Number(Number(plausMult[0]).toFixed(2));
+ }
+
+ const reMoeda = new RegExp(REG_VALOR_PT, 'g');
+ let m;
+ let ultimo = 0;
+ let ultimoIdx = -1;
+ while((m = reMoeda.exec(s)) !== null){
+  const n = converterValor(m[0]);
+  if(!filtrarValoresLinhaEvento([n], vp).length || n < 30){
+   continue;
+  }
+  if(valorMoedaEhQtdeOuPercentualProfis(n)){
+   continue;
+  }
+  if(m.index >= ultimoIdx){
+   ultimoIdx = m.index;
+   ultimo = n;
+  }
+ }
+ if(ultimo > 0){
+  return Number(Number(ultimo).toFixed(2));
+ }
+
+ if(trabalho.length === 1){
+  const u = trabalho[0];
+  if(valorMoedaEhQtdeOuPercentualProfis(u) && todas.length === 1){
+   return 0;
+  }
+  return Number(Number(u).toFixed(2));
+ }
+
+ if(trabalho.length >= 2){
+  const asc = trabalho.slice().sort(function(a, b){
+   return a - b;
+  });
+  return Number(Number(asc[0]).toFixed(2));
+ }
+
+ return 0;
+}
+
+function extrairValorProventoPorCodigo(referenciaVp, textoLinhas, textoCompacto, codigo, opts){
  const cod = String(codigo || '').trim();
  if(!/^\d{3,5}$/.test(cod)) return 0;
 
  const cx = String(textoCompacto || '');
  const reLinha = new RegExp('(^|\\D)' + cod + '(\\D|$)');
+ const vpN = Number(referenciaVp || 0);
+ const fracAjuste = opts && opts.ajustarAcimaFracVp != null ? Number(opts.ajustarAcimaFracVp) : null;
+ const useProfis1157 = cod === '1157' || cod === '01157';
+
+ function escolherNaJunta(junta){
+  if(useProfis1157){
+   return escolherValorProventoLinhaProfis1157(junta, referenciaVp);
+  }
+  return escolherValorProventoNaLinha(junta, referenciaVp);
+ }
+
+ function aplicarAjuste(junta, val){
+  if(useProfis1157 || fracAjuste == null || isNaN(fracAjuste)){
+   return val;
+  }
+  return ajustarValorProventoAbaixoFracVp(junta, val, vpN, fracAjuste);
+ }
 
  let best = 0;
  const linhas = String(textoLinhas).split(/\n/g);
  let idx;
  for(idx = 0; idx < linhas.length; idx++){
   const L = linhas[idx];
-  if(reLinha.test(L)){
-   const v = escolherValorProventoNaLinha(L, referenciaVp);
-   if(v > best) best = v;
+  if(!reLinha.test(L)){
+   continue;
+  }
+  let juntas;
+  let vLin = 0;
+  for(juntas = 0; juntas < 5; juntas++){
+   let junta = L;
+   let k;
+   for(k = 1; k <= juntas && idx + k < linhas.length; k++){
+    junta += '\n' + linhas[idx + k];
+   }
+   const vTry = escolherNaJunta(junta);
+   const vAdj = aplicarAjuste(junta, vTry);
+   if(vAdj > vLin){
+    vLin = vAdj;
+   }
+  }
+  if(vLin > best){
+   best = vLin;
   }
  }
 
@@ -226,15 +435,17 @@ function extrairValorProventoPorCodigo(referenciaVp, textoLinhas, textoCompacto,
  let pos = 0;
  while(pos < semEspacos.length){
   const j = semEspacos.indexOf(cod, pos);
-  if(j < 0) break;
+  if(j < 0){
+   break;
+  }
   const antes = j > 0 ? semEspacos[j - 1] : '';
   const depois = j + cod.length < semEspacos.length ? semEspacos[j + cod.length] : '';
   if(!/\d/.test(antes) && !/\d/.test(depois)){
-   const v2 = escolherValorProventoNaLinha(
-    semEspacos.slice(j, j + Math.min(320, semEspacos.length - j)),
-    referenciaVp
-   );
-   if(v2 > best) best = v2;
+   const trecho = semEspacos.slice(j, j + Math.min(420, semEspacos.length - j));
+   const v2 = aplicarAjuste(trecho, escolherNaJunta(trecho));
+   if(v2 > best){
+    best = v2;
+   }
   }
   pos = j + 1;
  }
@@ -283,6 +494,20 @@ function escolherVencimentoDeNumeros(vals){
   return melhorValor;
  }
 
+ const sorted = nums.slice().sort(function(a, b){
+  return a - b;
+ });
+ const lo = sorted[0];
+ const hi = sorted[sorted.length - 1];
+ if(sorted.length >= 3 && hi / lo > 1.28){
+  const med = medianaNumeros(sorted);
+  if(med !== null){
+   return Number(Number(med).toFixed(2));
+  }
+ }
+ if(sorted.length === 2 && hi / lo > 1.42){
+  return Number(Number(lo).toFixed(2));
+ }
  return Math.max.apply(null, nums);
 }
 
@@ -437,10 +662,11 @@ function extrairEventoLegadoSemMax(textoLinhas, textoCompacto, codigo){
  }
 }
 
-/** O = SOMA(B:F): vencimento + quinquênio (20%) + inc. funcional (50%) + insalubridade (40%). Equivale a venc × 2,1 quando B–E vêm só do vencimento. */
-function subtotalPlanilhaO(vencimento){
+/** O = SOMA(B:F): vencimento + quinquênio (20%) + inc. funcional (50% ou 90% conforme referência) + insalubridade (40%). */
+function subtotalPlanilhaO(vencimento, referencia){
  const v = Number(vencimento || 0);
- return Number((v + v * 0.2 + v * 0.5 + v * 0.4).toFixed(2));
+ const pi = referencia ? percentualIncentivoFuncionalPorReferencia(referencia) : 0.5;
+ return Number((v + v * 0.2 + v * pi + v * 0.4).toFixed(2));
 }
 
 /** ADIC.SERV.EXTRA.ESP. na planilha: =O/(180)+O/180*87,5% */
@@ -504,6 +730,24 @@ function extrairAnoMesRef(referencia){
  };
 }
 
+/**
+ * Incentivo funcional sobre o vencimento: 50% até ago/2022; a partir de set/2022, 90%.
+ * 13º/AAAA usa a alíquota do ano (≥ 2022 → 90%).
+ */
+function percentualIncentivoFuncionalPorReferencia(referencia){
+ const meta = extrairAnoMesRef(referencia);
+ if(!meta.ok){
+  return 0.5;
+ }
+ if(meta.isDecimoHolerite){
+  return meta.ano >= 2022 ? 0.9 : 0.5;
+ }
+ if(meta.ano > 2022 || (meta.ano === 2022 && meta.mes >= 9)){
+  return 0.9;
+ }
+ return 0.5;
+}
+
 /** jan/21 ou 13º/21 conforme caso */
 function rotuloMesCompetencia(referencia){
  const meta = extrairAnoMesRef(referencia);
@@ -519,9 +763,9 @@ function rotuloMesCompetencia(referencia){
 }
 
 
-/** Extrai valor provável da coluna proventos em linhas com esse código numérico (não só o maior número bruto da linha). */
-function extrairMoedaLinhaCodigo(textoLinhas, textoCompacto, codigo, referenciaVp){
- const v = extrairValorProventoPorCodigo(Number(referenciaVp || 0), textoLinhas, textoCompacto, codigo);
+/** Extrai valor provável da coluna proventos em linhas com esse código numérico (não só o maior número bruto da linha). opts.ajustarAcimaFracVp: filtra “base” alta em provento quando o PDF mistura colunas (não se aplica aos códigos **1157** / **01157**, que usam extrator específico de PROFIS). */
+function extrairMoedaLinhaCodigo(textoLinhas, textoCompacto, codigo, referenciaVp, opts){
+ const v = extrairValorProventoPorCodigo(Number(referenciaVp || 0), textoLinhas, textoCompacto, codigo, opts);
  return v ? v : 0;
 }
 
@@ -558,6 +802,382 @@ function extrairMoedaPorPalavraLinha(textoLinhas, textoEspaco, rePalavra, refere
  }
 }
 
+/**
+ * Percorre blocos já “colados” (espaços ou texto item-a-item do PDF): achar marcador mesmo com texto partido entre itens da tabela,
+ * pois textoLinhas vira uma linha por elemento do pdf.js — rótulos longos falham nos regex estritos só por linha.
+ */
+function extrairMaiorMoedaPorMarcadoresFlexVp(vp, blobsTexto, marcaRes, janelaDepois){
+ const jan = Math.min(janelaDepois == null ? 520 : Number(janelaDepois), 980);
+ let best = 0;
+ const visto = {};
+
+ let bi;
+ for(bi = 0; bi < (blobsTexto || []).length; bi++){
+  const raw = String(blobsTexto[bi] || '');
+  if(!raw.trim() || visto[raw]) continue;
+  visto[raw] = true;
+
+  let mj;
+  for(mj = 0; mj < marcaRes.length; mj++){
+   const modelo = marcaRes[mj];
+   const src = modelo instanceof RegExp ? modelo.source : String(modelo || '');
+   let fl = modelo instanceof RegExp ? modelo.flags : '';
+   if(fl.indexOf('g') < 0){
+    fl += 'g';
+   }
+   let re;
+   try{
+    re = new RegExp(src, fl);
+   }catch(e){
+    continue;
+   }
+   let m;
+   while((m = re.exec(raw)) !== null){
+    const t = raw.slice(m.index, Math.min(raw.length, m.index + jan));
+    const v = escolherValorProventoNaLinha(t, vp);
+    if(v > best){
+     best = v;
+    }
+   }
+  }
+ }
+
+ return Number(Number(best).toFixed(2));
+}
+
+/** Só aceita valor se o trecho contiver o código da rubrica ADIC.SERV.EXTRA.ESP. (evita janela grande com 1229 / incentivo / outras linhas). */
+function escolherValorProventoTrechoAPartirDoCodigoAdicEsp(trecho, vp){
+ const reCod = /\b(1468|01468|2093)\b/;
+ const T = String(trecho || '');
+ const m = T.match(reCod);
+ if(!m || m.index == null){
+  return 0;
+ }
+ const from = T.slice(m.index, Math.min(T.length, m.index + 260));
+ const v = escolherValorProventoNaLinha(from, vp);
+ return v > 0 ? Number(Number(v).toFixed(2)) : 0;
+}
+
+/**
+ * Rótulo ADIC…EXTRA…ESP no texto: só conta se **1468 / 01468 / 2093** estiver no mesmo recorte (nunca pega 1229 AD.INCENT como “adic. extra esp”).
+ */
+function extrairAdicServExtraPorRotuloAncorado(textoLinhas, textoEspaco, referenciaVp){
+ const vp = Number(referenciaVp || 0);
+ const reAdic = /\bADIC(?:IONAL)?\.?\s*SERV(?:I[CÇ]OS?|\.)?\s*(?:EXTRA|EXT)(?:ORD)?\.?\s*ESP[EECÍI]*(?:IAL|\.|IS)?(?:\.|,|\s|$)/i;
+ let melhor = 0;
+ const linhas = String(textoLinhas).split(/\n/g);
+ let i;
+ for(i = 0; i < linhas.length; i++){
+  const L1 = linhas[i];
+  const L2 = L1 + '\n' + (linhas[i + 1] || '');
+  let ch;
+  for(ch = 0; ch < 2; ch++){
+   const chunk = ch ? L2 : L1;
+   if(!reAdic.test(chunk)){
+    continue;
+   }
+   const v = escolherValorProventoTrechoAPartirDoCodigoAdicEsp(chunk, vp);
+   if(v > melhor){
+    melhor = v;
+   }
+  }
+ }
+
+ const blob = String(textoEspaco || '');
+ let ad;
+ const reAdicG = new RegExp(reAdic.source, reAdic.ignoreCase ? 'gi' : 'g');
+ reAdicG.lastIndex = 0;
+ while((ad = reAdicG.exec(blob)) !== null){
+  const slice = blob.slice(ad.index, Math.min(blob.length, ad.index + 420));
+  const vBl = escolherValorProventoTrechoAPartirDoCodigoAdicEsp(slice, vp);
+  if(vBl > melhor){
+   melhor = vBl;
+  }
+ }
+
+ return Number(Number(melhor).toFixed(2));
+}
+
+/** Valor só após **1157** ou **1199** em contexto de PROFIS — **1199** em linha de ABONO PERMANÊNCIA é ignorado (evita confundir abono com profis). */
+function escolherValorProventoTrechoAPartirDoCodigoProfis(trecho, vp){
+ const T = String(trecho || '');
+
+ function valorDesde(indice){
+  const from = T.slice(indice, Math.min(T.length, indice + 420));
+  const v = escolherValorProventoLinhaProfis1157(from, vp);
+  return v > 0 ? Number(Number(v).toFixed(2)) : 0;
+ }
+
+ let melhor = 0;
+ let re1157 = /\b(1157|01157)\b/g;
+ let m;
+ while((m = re1157.exec(T)) !== null){
+  const v = valorDesde(m.index);
+  if(v > melhor){
+   melhor = v;
+  }
+ }
+
+ const re1199 = /\b(1199|01199)\b/g;
+ while((m = re1199.exec(T)) !== null){
+  const from = T.slice(m.index, Math.min(T.length, m.index + 420));
+  if(/\bABONO\s+PERMAN[EÊ]NCIA\b/i.test(from)){
+   continue;
+  }
+  const v = valorDesde(m.index);
+  if(v > melhor){
+   melhor = v;
+  }
+ }
+
+ return melhor;
+}
+
+/** Rótulo ADIC…INCENT…PROFIS: aceita “ADICIONAL / INCENTIVO” quebrado (PDF 2024+); se não achar 1157/1199 no recorte, lê provento pela linha da rubrica. */
+function extrairAdicIncentProfisPorRotuloAncorado(textoLinhas, textoEspaco, referenciaVp){
+ const vp = Number(referenciaVp || 0);
+ const reProfis = /\bADIC(?:IONAL|\.)?\s*(?:INCENT(?:IVO)?|INCENT\.?)\s*PROFIS/i;
+ let melhor = 0;
+ const linhas = String(textoLinhas).split(/\n/g);
+ let i;
+ for(i = 0; i < linhas.length; i++){
+  const L1 = linhas[i];
+  let juntas;
+  for(juntas = 0; juntas < 5; juntas++){
+   let chunk = L1;
+   let k;
+   for(k = 1; k <= juntas && i + k < linhas.length; k++){
+    chunk += '\n' + linhas[i + k];
+   }
+   if(!reProfis.test(chunk)){
+    continue;
+   }
+   let v = escolherValorProventoTrechoAPartirDoCodigoProfis(chunk, vp);
+   if(v < 0.5){
+    v = escolherValorProventoLinhaProfis1157(chunk, vp);
+   }
+   if(v > melhor){
+    melhor = v;
+   }
+  }
+ }
+
+ const blob = String(textoEspaco || '');
+ let pm;
+ const reProfisG = new RegExp(reProfis.source, reProfis.ignoreCase ? 'gi' : 'g');
+ reProfisG.lastIndex = 0;
+ while((pm = reProfisG.exec(blob)) !== null){
+  const slice = blob.slice(pm.index, Math.min(blob.length, pm.index + 620));
+  let vBl = escolherValorProventoTrechoAPartirDoCodigoProfis(slice, vp);
+  if(vBl < 0.5){
+   vBl = escolherValorProventoLinhaProfis1157(slice, vp);
+  }
+  if(vBl > melhor){
+   melhor = vBl;
+  }
+ }
+
+ return Number(Number(melhor).toFixed(2));
+}
+
+/** ADIC.INCENT.PROFIS: **1157** no holerite; **1199** só via rótulo ancorado (nunca linha 1229). */
+function extrairAdicIncentProfisDeHolerite(textoLinhas, textoCompacto, textoEspaco, vencRef){
+ const vp = Number(vencRef || 0);
+ const L = textoLinhas;
+ const C = String(textoCompacto || '');
+ const E = String(textoEspaco || '');
+
+ const v1157 = extrairMoedaLinhaCodigo(L, C, '1157', vp);
+ if(v1157 > 0){
+  return Number(Number(v1157).toFixed(2));
+ }
+ const v01557 = extrairMoedaLinhaCodigo(L, C, '01157', vp);
+ if(v01557 > 0){
+  return Number(Number(v01557).toFixed(2));
+ }
+
+ const porRotulo = extrairAdicIncentProfisPorRotuloAncorado(L, E, vp);
+ if(porRotulo > 0){
+  return porRotulo;
+ }
+
+ return 0;
+}
+
+/**
+ * Descarta leituras de **ADIC.INCENT.PROFIS** que batem com matrícula/total/outro campo do PDF (ex.: 26.063,00)
+ * ou “400,00” sem relação com ~9% / ~12% do 1101. Valores plausíveis da rubrica ficam tipicamente abaixo de ~21% do vencimento.
+ */
+function sanearAdicIncentProfisExtraido(val, vp){
+ const v = Number(val || 0);
+ const vpN = Number(vp || 0);
+ if(v <= 0.5 || vpN < 120){
+  return 0;
+ }
+ if(v >= 4500){
+  return 0;
+ }
+ const teto = vpN * 0.21;
+ if(v > teto){
+  return 0;
+ }
+ const tol = Math.max(25, vpN * 0.016);
+ const alvo9 = vpN * 0.09;
+ const alvo12 = vpN * 0.12;
+ if(Math.abs(v - alvo9) <= tol){
+  return Number(v.toFixed(2));
+ }
+ if(Math.abs(v - alvo12) <= tol){
+  return Number(v.toFixed(2));
+ }
+ if(v >= 310 && v <= 490){
+  const d9 = Math.abs(v - alvo9);
+  const d12 = Math.abs(v - alvo12);
+  if(d9 > vpN * 0.055 && d12 > vpN * 0.055){
+   return 0;
+  }
+ }
+ if(v > vpN * 0.175){
+  return 0;
+ }
+ return Number(v.toFixed(2));
+}
+
+/** ABONO PERMANÊNCIA: código 1199 **só** em linha com rótulo (evita misturar com outras rubricas). */
+function extrairAbonoPermanenciaDeHolerite(textoLinhas, textoCompacto, textoEspaco, vencRef){
+ const vp = Number(vencRef || 0);
+ const L = textoLinhas;
+ const C = String(textoCompacto || '');
+ const E = String(textoEspaco || '');
+ const reAb = /\bABONO\s+PERMAN[EÊ]NCIA\b/i;
+ let melhor = 0;
+ const linhas = String(L).split(/\n/g);
+ let i;
+ for(i = 0; i < linhas.length; i++){
+  const L1 = linhas[i];
+  const L2 = L1 + '\n' + (linhas[i + 1] || '');
+  let ch;
+  for(ch = 0; ch < 2; ch++){
+   const chunk = ch ? L2 : L1;
+   if(!reAb.test(chunk)){
+    continue;
+   }
+   let v = 0;
+   if(/\b(1199|01199)\b/.test(chunk)){
+    const mc = chunk.match(/\b(1199|01199)\b/);
+    const from = chunk.slice(mc.index, Math.min(chunk.length, mc.index + 260));
+    v = escolherValorProventoNaLinha(from, vp);
+   }else{
+    v = escolherValorProventoNaLinha(chunk, vp);
+   }
+   if(v > melhor){
+    melhor = v;
+   }
+  }
+ }
+
+ if(melhor > 0){
+  return Number(Number(melhor).toFixed(2));
+ }
+
+ return extrairMoedaPorPalavraLinha(L, E, reAb, vp);
+}
+
+/** Flex ADIC…ESP: mesmo critério — valor só a partir do trecho onde aparece 1468/2093 (não o maior número da janela). */
+function extrairMaiorMoedaMarcadoresFlexAdicEsp(vp, blobsTexto, marcaRes, janelaDepois){
+ const jan = Math.min(janelaDepois == null ? 520 : Number(janelaDepois), 980);
+ let best = 0;
+ const visto = {};
+
+ let bi;
+ for(bi = 0; bi < (blobsTexto || []).length; bi++){
+  const raw = String(blobsTexto[bi] || '');
+  if(!raw.trim() || visto[raw]){
+   continue;
+  }
+  visto[raw] = true;
+
+  let mj;
+  for(mj = 0; mj < marcaRes.length; mj++){
+   const modelo = marcaRes[mj];
+   const src = modelo instanceof RegExp ? modelo.source : String(modelo || '');
+   let fl = modelo instanceof RegExp ? modelo.flags : '';
+   if(fl.indexOf('g') < 0){
+    fl += 'g';
+   }
+   let re;
+   try{
+    re = new RegExp(src, fl);
+   }catch(e){
+    continue;
+   }
+   let m;
+   while((m = re.exec(raw)) !== null){
+    const t = raw.slice(m.index, Math.min(raw.length, m.index + jan));
+    const v = escolherValorProventoTrechoAPartirDoCodigoAdicEsp(t, vp);
+    if(v > best){
+     best = v;
+    }
+   }
+  }
+ }
+
+ return Number(Number(best).toFixed(2));
+}
+
+/** Coluna “hora especial”: só **ADIC.SERV.EXTRA.ESP.** = **1468** (fallback **2093**) ou rótulo/flex **ADIC…SERV…EXTRA…ESP** com **1468/2093** no mesmo recorte. Sem isso → 0 (não usa 1229, nem “HORA ESPECIAL” solta, nem 1845). */
+function extrairHoraEspecialDeHolerite(textoLinhas, textoCompacto, textoEspaco, vencRef){
+ const vp = Number(vencRef || 0);
+ const L = textoLinhas;
+ const C = String(textoCompacto || '');
+ const E = String(textoEspaco || '');
+ const semEspE = E.replace(/\s+/g, '');
+ const semEspC = C.replace(/\s+/g, '');
+
+ const CODIGOS_ADIC_1468 = ['1468','01468'];
+ const CODIGO_ADIC_LEGACY = '2093';
+
+ function maiorCodigo(codigos){
+  let j;
+  let m = 0;
+  for(j = 0; j < codigos.length; j++){
+   const v = extrairMoedaLinhaCodigo(L, C, codigos[j], vp);
+   if(v > m){
+    m = v;
+   }
+  }
+  return m;
+ }
+
+ const por1468 = maiorCodigo(CODIGOS_ADIC_1468);
+ if(por1468 > 0){
+  return Number(Number(por1468).toFixed(2));
+ }
+
+ const por2093 = extrairMoedaLinhaCodigo(L, C, CODIGO_ADIC_LEGACY, vp);
+ if(por2093 > 0){
+  return Number(Number(por2093).toFixed(2));
+ }
+
+ const porRotuloAdic = extrairAdicServExtraPorRotuloAncorado(L, E, vp);
+
+ const marcasFlex = [
+  /ADIC(?:IONAL|\.)?[\s\S]{0,560}?SERV(?:I[CÇ](?:O|S))?[\s\S]{0,560}?(?:EXTRA|EXT)(?:ORD)?[\s\S]{0,260}?ESP[EECÍI]*(?:IAL|\.|,|\s|$)?/gi,
+  /ADICSERV(?:I[CÇ](?:O|S))?EXTRAESP/gi
+ ];
+
+ const flexEspaco = extrairMaiorMoedaMarcadoresFlexAdicEsp(vp, [E, semEspE], marcasFlex, 920);
+ const flexCompact = extrairMaiorMoedaMarcadoresFlexAdicEsp(vp, [C, semEspC], marcasFlex, 920);
+
+ const porFlexERotulo = Math.max(porRotuloAdic, flexEspaco, flexCompact);
+
+ if(porFlexERotulo > 0){
+  return Number(Number(porFlexERotulo).toFixed(2));
+ }
+
+ return 0;
+}
+
 /** Tenta ler rubricas reais no holerite (códigos SIGPEC + texto). Valores são filtrados em relação ao 1101; zeros acionam % no componentesTotaisPago. */
 function extrairRubricasProventos(textoLinhas, textoCompacto, textoEspaco, vencRef){
  const vp = Number(vencRef || 0);
@@ -575,24 +1195,30 @@ function extrairRubricasProventos(textoLinhas, textoCompacto, textoEspaco, vencR
   return m;
  }
 
+ const adicIncentProfisBruto = extrairAdicIncentProfisDeHolerite(L, C, E, vp);
+ const adicIncentProfis = sanearAdicIncentProfisExtraido(adicIncentProfisBruto, vp);
+
+ const abonoPermanencia = extrairAbonoPermanenciaDeHolerite(L, C, E, vp);
+
  const quinquenio = maiorCodigo(['1215']) ||
   extrairMoedaPorPalavraLinha(L, E, /\bQUINQUI[ÊE]NIO\b/i, vp);
 
- const incentivo = maiorCodigo(['1157','1217','2157','0157']) ||
+ const incentivo = maiorCodigo(['1217','2157','1229','01229']) ||
   extrairMoedaPorPalavraLinha(L, E, /\bINCENT(?:IVO)?\.?\s*FUNC\b/i, vp) ||
-  extrairMoedaPorPalavraLinha(L, E, /\bADIC\.?\s*INCENT/i, vp);
+  extrairMoedaPorPalavraLinha(L, E, /\bADIC\.?\s*INCENT(?!\.?\s*PROFIS)/i, vp);
 
  const insalubridade = maiorCodigo(['1043','1158','1318']) ||
   extrairMoedaPorPalavraLinha(L, E, /\bINSALUBRIDADE\b/i, vp);
 
- const horaEspecial = maiorCodigo(['01845','1845','1890','2093']) ||
-  extrairMoedaPorPalavraLinha(L, E, /\bHORA\s+ESPECIAL\b/i, vp);
+ const horaEspecial = extrairHoraEspecialDeHolerite(L, C, E, vp);
 
  return{
   quinquenio: quinquenio ? Number(Number(quinquenio).toFixed(2)) : 0,
   incentivo: incentivo ? Number(Number(incentivo).toFixed(2)) : 0,
   insalubridade: insalubridade ? Number(Number(insalubridade).toFixed(2)) : 0,
-  horaEspecial: horaEspecial ? Number(Number(horaEspecial).toFixed(2)) : 0
+  horaEspecial: horaEspecial ? Number(Number(horaEspecial).toFixed(2)) : 0,
+  adicIncentProfis: adicIncentProfis ? Number(Number(adicIncentProfis).toFixed(2)) : 0,
+  abonoPermanencia: abonoPermanencia ? Number(Number(abonoPermanencia).toFixed(2)) : 0
  };
 }
 
@@ -606,6 +1232,10 @@ function componentesTotaisPago(vp, extra, opts){
  let insPd = forcarPct ? 0 : Number(extra.insalubridade || 0);
  let hePd = Number(extra.horaEspecial || 0);
 
+ const pctIncRef = (opts && opts.referencia)
+  ? percentualIncentivoFuncionalPorReferencia(opts.referencia)
+  : 0.5;
+
  if(!forcarPct && venc > 120){
   if(qPd > 0 && (qPd < venc * 0.105 || qPd > venc * 0.34)){
    qPd = 0;
@@ -613,8 +1243,11 @@ function componentesTotaisPago(vp, extra, opts){
   if(insPd > 0 && (insPd < venc * 0.30 || insPd > venc * 0.55)){
    insPd = 0;
   }
-  if(iPd > 0 && (iPd < venc * 0.26 || iPd > venc * 3.5)){
-   iPd = 0;
+  if(iPd > 0){
+   const incMin = Math.max(venc * 0.26, venc * pctIncRef * 0.48);
+   if(iPd < incMin || iPd > venc * 3.5){
+    iPd = 0;
+   }
   }
  }
 
@@ -623,7 +1256,7 @@ function componentesTotaisPago(vp, extra, opts){
  }
 
  let q = qPd > 0 ? qPd : Number((venc * 0.2).toFixed(2));
- let inc = iPd > 0 ? iPd : Number((venc * 0.5).toFixed(2));
+ let inc = iPd > 0 ? iPd : Number((venc * pctIncRef).toFixed(2));
  let ins = insPd > 0 ? insPd : Number((venc * 0.4).toFixed(2));
  let he = hePd > 0 ? Number(hePd.toFixed(2)) : 0;
 
@@ -640,9 +1273,192 @@ function componentesTotaisPago(vp, extra, opts){
 }
 
 function pontuacaoCompetenciaItem(item){
- return componentesTotaisPago(Number(item.vencimento || 0), item, {
-  forcarPctColunasBCDE: false
- }).totalPago;
+ const vp = Number(item.vencimento || 0);
+ if(vp <= 0){
+  return 0;
+ }
+ let s = vp;
+ if(Number(item.horaEspecial) > 0){
+  s += Number(item.horaEspecial);
+ }
+ if(Number(item.adicIncentProfis) > 0){
+  s += Number(item.adicIncentProfis);
+ }
+ if(Number(item.abonoPermanencia) > 0){
+  s += Number(item.abonoPermanencia);
+ }
+ return s;
+}
+
+function riquezaRubricasPdf(item){
+ let n = 0;
+ if(Number(item.quinquenio) > 0){
+  n++;
+ }
+ if(Number(item.incentivo) > 0){
+  n++;
+ }
+ if(Number(item.insalubridade) > 0){
+  n++;
+ }
+ if(Number(item.horaEspecial) > 0){
+  n++;
+ }
+ if(Number(item.adicIncentProfis) > 0){
+  n++;
+ }
+ if(Number(item.abonoPermanencia) > 0){
+  n++;
+ }
+ return n;
+}
+
+/** Desempate no dedupe: total “O” parecido → prefere página com mais rubricas lidas do PDF (ex. não trocar folha cheia por resumo sem 1157). */
+function compararItensCompetenciaPreferirRubricas(novo, atual){
+ const sN = pontuacaoCompetenciaItem(novo);
+ const sA = pontuacaoCompetenciaItem(atual);
+ if(sN > sA + 120){
+  return 1;
+ }
+ if(sN < sA - 80){
+  return -1;
+ }
+ const rN = riquezaRubricasPdf(novo);
+ const rA = riquezaRubricasPdf(atual);
+ if(rN !== rA){
+  return rN > rA ? 1 : -1;
+ }
+ const vN = Number(novo.vencimento || 0);
+ const vA = Number(atual.vencimento || 0);
+ if(vN !== vA){
+  return vN > vA ? 1 : -1;
+ }
+ if(sN > sA){
+  return 1;
+ }
+ if(sN < sA){
+  return -1;
+ }
+ return 0;
+}
+
+/**
+ * Corrige holerites em que um mês isolado veio com vencimento inflado no texto (ex. mar/23 ~5.586 vs ~1.890 nos demais):
+ * se a maioria do ano (~55%+) está num patamar e um mês passa ~38% acima da mediana, alinha vencimento à mediana e
+ * reescala quinquênio/incentivo/insalubridade/HE/abono/PROFIS. Se PROFIS sumiu no PDF nesse mês, imputa a mediana dos meses “normais”.
+ */
+function refinarLoteHoleritePorMedianaSalarial(lista){
+ if(!lista || lista.length < 6){
+  return 0;
+ }
+
+ let ajustados = 0;
+ const porAno = {};
+ lista.forEach(function(it){
+  const meta = extrairAnoMesRef(it.referencia);
+  if(!meta.ok || meta.isDecimoHolerite || meta.mes < 1 || meta.mes > 12){
+   return;
+  }
+  const a = meta.ano;
+  if(!porAno[a]){
+   porAno[a] = [];
+  }
+  porAno[a].push({ item: it, meta: meta });
+ });
+
+ const anosChaves = Object.keys(porAno);
+ let ai;
+ for(ai = 0; ai < anosChaves.length; ai++){
+  const grupo = porAno[anosChaves[ai]];
+  const vencs = grupo.map(function(w){
+   return Number(w.item.vencimento || 0);
+  }).filter(function(v){
+   return v > 400;
+  });
+
+  if(vencs.length < 6){
+   continue;
+  }
+
+  const med = medianaNumeros(vencs.slice());
+  if(med === null || med < 800){
+   continue;
+  }
+
+  const noCluster = vencs.filter(function(v){
+   return Math.abs(v - med) / med <= 0.14;
+  }).length;
+
+  if(noCluster < vencs.length * 0.55){
+   continue;
+  }
+
+  const clusterWraps = grupo.filter(function(w){
+   const vn = Number(w.item.vencimento || 0);
+   return vn > 400 && Math.abs(vn - med) / med <= 0.14;
+  });
+
+  const valsProf = clusterWraps.map(function(w){
+   const vn = Number(w.item.vencimento || 0);
+   return sanearAdicIncentProfisExtraido(Number(w.item.adicIncentProfis || 0), vn);
+  }).filter(function(x){
+   return x > 1;
+  });
+  const medProf = valsProf.length >= 2 ? medianaNumeros(valsProf.slice()) : (valsProf.length === 1 ? valsProf[0] : 0);
+  const podeImputarProfis = medProf > 3 && valsProf.length >= 2;
+
+  grupo.forEach(function(w){
+   const it = w.item;
+   const vn = Number(it.vencimento || 0);
+   if(vn < 500){
+    return;
+   }
+   if(vn <= med * 1.38){
+    return;
+   }
+
+   const f = med / vn;
+   const escala = function(val){
+    const x = Number(val || 0);
+    return x > 0 ? Number((x * f).toFixed(2)) : 0;
+   };
+
+   it.vencimento = Number(med.toFixed(2));
+   it.quinquenio = escala(it.quinquenio);
+   it.incentivo = escala(it.incentivo);
+   it.insalubridade = escala(it.insalubridade);
+   it.horaEspecial = escala(it.horaEspecial);
+   it.adicIncentProfis = escala(it.adicIncentProfis);
+   it.abonoPermanencia = escala(it.abonoPermanencia);
+
+   if((!Number(it.adicIncentProfis) || Number(it.adicIncentProfis) < 1) && podeImputarProfis){
+    it.adicIncentProfis = Number(Number(medProf).toFixed(2));
+   }
+
+   ajustados++;
+  });
+
+  /** Meses com mesmo patamar de vencimento do cluster, mas PDF não trouxe 1157/PROFIS (só se o ano já tem 2+ meses com valor). */
+  if(podeImputarProfis){
+   grupo.forEach(function(w){
+    const it = w.item;
+    const vn = Number(it.vencimento || 0);
+    if(vn < 500){
+     return;
+    }
+    if(Math.abs(vn - med) / med > 0.16){
+     return;
+    }
+    if(Number(it.adicIncentProfis) > 0.5){
+     return;
+    }
+    it.adicIncentProfis = Number(Number(medProf).toFixed(2));
+    ajustados++;
+   });
+  }
+ }
+
+ return ajustados;
 }
 
 /** Competência MM/AAAA: tenta rótulos do holerite; evita pegar a primeira data qualquer (ex.: admissão). */
@@ -719,262 +1535,281 @@ function extrairReferencia(texto, textoCompacto, pagina){
  }
 }
 
-$('#btnProcessar').on('click', async function(){
- try{
-  const arquivos = $('#pdfInput')[0].files;
+let pctConfigPorAno = {};
+let mapaPorChave = {};
+const LETRAS_PROGRESSAO = ['A','B','C','D','E','F','G','H','I','J'];
+const PERCENTUAL_PROGRESSAO_LEI = 0.009615384615;
 
-  if(!arquivos || arquivos.length === 0){
-   alert('Selecione ao menos um PDF');
-   return;
+function referenciaParaMesIso(referencia){
+ const norm = normalizarMesAnoBr(String(referencia || '').trim());
+ if(!norm) return null;
+ const partes = norm.split('/');
+ return partes[1] + '-' + partes[0];
+}
+
+function chaveUnicaCompetencia(item){
+ const iso = referenciaParaMesIso(item.referencia);
+ return iso || (String(item.arquivo) + '|' + String(item.referencia));
+}
+
+function garantirPctAno(ano){
+ const a = Number(ano);
+ if(!pctConfigPorAno[a]){
+  pctConfigPorAno[a] = { quin: 20, profis: 9, ins: 40 };
+ }else{
+  const c = pctConfigPorAno[a];
+  if(c.profis == null && c.inc != null){
+   c.profis = Number(c.inc);
+   delete c.inc;
   }
-
-  arquivosProcessados = [];
-
-  for(let i = 0; i < arquivos.length; i++){
-   const arquivo = arquivos[i];
-   const buffer = await arquivo.arrayBuffer();
-   const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
-
-   log('PDF carregado: ' + arquivo.name);
-   log('Páginas encontradas: ' + pdf.numPages);
-
-   for(let pagina = 1; pagina <= pdf.numPages; pagina++){
-    const page = await pdf.getPage(pagina);
-    const text = await page.getTextContent();
-
-    const texto = text.items.map(function(item){
-     return item.str;
-    }).join(' ');
-    const textoLinhas = text.items.map(function(item){
-     return item.str;
-    }).join('\n');
-    const textoCompacto = text.items.map(function(item){
-     return item.str;
-    }).join('');
-
-    const referencia = extrairReferencia(texto, textoCompacto, pagina);
-    const vencimento = extrairVencimentoHolerite(textoLinhas, texto, textoCompacto);
-    const rub = extrairRubricasProventos(textoLinhas, textoCompacto, texto, vencimento);
-
-    console.log({ referencia, vencimento, rub });
-
-    arquivosProcessados.push({
-      arquivo: arquivo.name,
-      referencia: referencia,
-      vencimento: vencimento,
-      quinquenio: rub.quinquenio,
-      incentivo: rub.incentivo,
-      insalubridade: rub.insalubridade,
-      horaEspecial: rub.horaEspecial
-    });
-
-    log('Competência processada: ' + referencia);
-   }
+  if(c.profis == null || isNaN(c.profis)){
+   c.profis = 9;
   }
-
-  $('#totalArquivos').text(arquivosProcessados.length);
-
-  log('PDFs processados com sucesso');
-  log('Total de competências carregadas: ' + arquivosProcessados.length);
-  log('Ajuste letras/período e clique em Executar Cálculos para ver diferenças.');
-
-  alert('PDFs processados com sucesso');
- }catch(e){
-  console.error(e);
-  log('Erro ao processar PDFs: ' + e.message);
-  alert('Erro ao processar PDFs');
  }
-});
+ return pctConfigPorAno[a];
+}
 
-$('#btnCalcular').on('click', function(){
+function htmlLetrasOptions(selecionada){
+ let h = '';
+ let u;
+ for(u = 0; u < LETRAS_PROGRESSAO.length; u++){
+  const L = LETRAS_PROGRESSAO[u];
+  const sel = L === selecionada ? ' selected' : '';
+  h += '<option value="' + L + '"' + sel + '>' + L + '</option>';
+ }
+ return h;
+}
+
+function htmlToolbarAno(ano){
+ const a = Number(ano);
+ return (
+  '<tr class="toolbar-ano" data-ano="' + a + '">' +
+  '<td colspan="12" class="td-toolbar-ano">' +
+  '<div class="toolbar-ano-inner">' +
+  '<span class="tbar-hint">Ano <strong>' + a + '</strong></span>' +
+  '<input type="text" class="inp-comp-ref-ano" placeholder="Ref. MM/AAAA ou 13/AAAA" autocomplete="off">' +
+  '<input type="text" class="inp-comp-venc-ano" placeholder="Vencimento R$" autocomplete="off">' +
+  '<input type="text" class="inp-comp-he-ano" placeholder="HE opc." value="0">' +
+  '<input type="text" class="inp-comp-ab-ano" placeholder="Abono opc." value="0">' +
+  '<button type="button" class="btn-adicionar-comp-ano">Adicionar linha</button>' +
+  '<button type="button" class="btn-excluir-comp-ano btn-perigo">Excluir marcadas</button>' +
+  '</div>' +
+  '</td>' +
+  '</tr>'
+ );
+}
+
+function htmlBarraPercentuaisAno(ano){
+ const cfg = garantirPctAno(ano);
+ let hQuin = '<select class="pct-sel-ano" data-ano="' + ano + '" data-campo="quin" title="Quinquênio (10%–50% do vencimento)">';
+ let q;
+ for(q = 10; q <= 50; q++){
+  hQuin += '<option value="' + q + '"' + (q === cfg.quin ? ' selected' : '') + '>' + q + '%</option>';
+ }
+ hQuin += '</select>';
+
+ const hIncFuncFixo = '<span class="cfg-pct-label" title="Fixo por mês: 50% até ago/2022 · 90% desde set/2022">Inc. funcional</span>';
+
+ let hProfis = '<select class="pct-sel-ano" data-ano="' + ano + '" data-campo="profis" title="ADIC.INCENT.PROFIS — % do vencimento (9%–12%)">';
+ let x = 9;
+ while(x <= 12.001){
+  const v = Math.round(x * 100) / 100;
+  hProfis += '<option value="' + v + '"' + (Math.abs(v - cfg.profis) < 0.001 ? ' selected' : '') + '>' + v + '%</option>';
+  x += 0.5;
+ }
+ hProfis += '</select>';
+
+ let hIns = '<select class="pct-sel-ano" data-ano="' + ano + '" data-campo="ins" title="Insalubridade (20%–40%)">';
+ let s;
+ for(s = 20; s <= 40; s++){
+  hIns += '<option value="' + s + '"' + (s === cfg.ins ? ' selected' : '') + '>' + s + '%</option>';
+ }
+ hIns += '</select>';
+
+ return (
+  '<tr class="cfg-ano-pct">' +
+  '<td class="td-arq" title="Percentuais do ano"><span style="font-size:11px;font-weight:700;color:#0f172a">Ano ' + ano + '</span></td>' +
+  '<td class="td-mes"></td>' +
+  '<td class="td-sit"></td>' +
+  '<td class="td-num" style="color:#94a3b8">—</td>' +
+  '<td class="td-num">' +
+  '<span class="cfg-pct-label">Quinquênio</span>' + hQuin +
+  '</td>' +
+  '<td class="td-num">' + hIncFuncFixo + '</td>' +
+  '<td class="td-num">' +
+  '<span class="cfg-pct-label">Insalubridade</span>' + hIns +
+  '</td>' +
+  '<td class="td-traco">—</td>' +
+  '<td class="td-num">' +
+  '<span class="cfg-pct-label">Profis</span>' + hProfis +
+  '</td>' +
+  '<td class="td-traco">—</td>' +
+  '<td class="td-traco">—</td>' +
+  '<td class="td-traco">—</td>' +
+  '</tr>'
+ );
+}
+
+function valoresLinhaProgNovo(itemComp, anoNum){
+ const ano = Number(anoNum);
+ const pct = garantirPctAno(ano);
+ const vp = Number(itemComp.vencimento || 0);
+
+ const la = String(itemComp.letraAtual || 'D');
+ const ld = String(itemComp.letraDevida || 'F');
+ const ia = LETRAS_PROGRESSAO.indexOf(la);
+ const id = LETRAS_PROGRESSAO.indexOf(ld);
+ let progressao = id - ia;
+ if(progressao < 0){
+  progressao = 0;
+ }
+
+ const vd = vp > 0 ? Number((vp * (1 + PERCENTUAL_PROGRESSAO_LEI * progressao)).toFixed(2)) : 0;
+ const fator = vp > 0 ? vd / vp : 1;
+
+ const qP = vp > 0 ? Number((vp * (pct.quin / 100)).toFixed(2)) : 0;
+ const piF = percentualIncentivoFuncionalPorReferencia(itemComp.referencia);
+ const iP = vp > 0 ? Number((vp * piF).toFixed(2)) : 0;
+ const insP = vp > 0 ? Number((vp * (pct.ins / 100)).toFixed(2)) : 0;
+ const heP = Number(itemComp.horaEspecial || 0);
+ const pfPct = Number(pct.profis != null ? pct.profis : 9);
+ const adPf = vp > 0 ? Number((vp * (pfPct / 100)).toFixed(2)) : 0;
+ const ab = Number(itemComp.abonoPermanencia || 0);
+
+ const qD = Number((qP * fator).toFixed(2));
+ const iD = Number((iP * fator).toFixed(2));
+ const insD = Number((insP * fator).toFixed(2));
+ const heD = Number((heP * fator).toFixed(2));
+ const adPfD = Number((adPf * fator).toFixed(2));
+ const abD = Number((ab * fator).toFixed(2));
+
+ const O_pago = Number((vp + qP + iP + insP + heP + adPf + ab).toFixed(2));
+ const O_devido = Number((vd + qD + iD + insD + heD + adPfD + abD).toFixed(2));
+ const diferenca = Number((O_devido - O_pago).toFixed(2));
+
+ return{
+  diferenca: diferenca,
+  O_pago: O_pago,
+  O_devido: O_devido,
+  vp: vp,
+  vd: vd,
+  quinquenioPago: qP,
+  incentivoFuncPago: iP,
+  insalubridadePago: insP,
+  horaEspecialPago: heP,
+  quinquenioDevido: qD,
+  incentivoFuncDevido: iD,
+  insalubridadeDevido: insD,
+  horaEspecialDevido: heD,
+  adicIncentProfisPago: adPf,
+  adicIncentProfisDevido: adPfD,
+  abonoPermanenciaPago: ab,
+  abonoPermanenciaDevido: abD
+ };
+}
+
+function montarTabelaResultados(mostrarAlerta){
+ const exibirMsg = mostrarAlerta === true;
  try{
   if(arquivosProcessados.length === 0){
-   alert('Primeiro processe os PDFs');
+   $('#resultadoBody').html('');
+   $('#resultadoFoot').hide();
+   $('#valorTotal').text(moeda(0));
+   if(exibirMsg){
+    alert('Primeiro processe os PDFs ou adicione uma competência manual.');
+   }
    return;
   }
 
   $('#resultadoBody').html('');
   $('#resultadoFoot').hide();
 
-  const letras = ['A','B','C','D','E','F','G','H','I','J'];
-
-  const atual = letras.indexOf($('#letraAtual').val());
-  const devida = letras.indexOf($('#letraDevida').val());
-
-  let progressao = devida - atual;
-
-  if(progressao < 0){
-   progressao = 0;
-  }
-
-  const letraAtStr = $('#letraAtual').val();
-  const letraDvStr = $('#letraDevida').val();
-
-  const percentual = 0.009615384615;
-
-  const periodoInicial = ($('#periodoInicial').val() || '').trim();
-  const periodoFinal = ($('#periodoFinal').val() || '').trim();
-
-  function referenciaParaMes(referencia){
-   const norm = normalizarMesAnoBr(String(referencia).trim());
-   if(!norm) return null;
-   const partes = norm.split('/');
-   return partes[1] + '-' + partes[0];
-  }
-
-  function filtrarPorPeriodo(lista, ini, fim){
-   return lista.filter(function(item){
-    if(!ini && !fim){
-     return true;
-    }
-
-    const refMes = referenciaParaMes(item.referencia);
-    if(!refMes){
-     return false;
-    }
-
-    if(ini && fim){
-     return refMes >= ini && refMes <= fim;
-    }
-    if(ini){
-     return refMes >= ini;
-    }
-    return refMes <= fim;
-   });
-  }
-
-  let registrosFiltrados = filtrarPorPeriodo(arquivosProcessados, periodoInicial, periodoFinal);
-
-  if(registrosFiltrados.length === 0 && arquivosProcessados.length > 0){
-   const amostra = arquivosProcessados.slice(0, 10).map(function(x){
-    return x.referencia;
-   }).join('; ');
-   log('Filtro de período excluiu todos. Referências extraídas (amostra): ' + amostra);
-
-   if(periodoInicial || periodoFinal){
-    const msg = 'Nenhuma competência entra no período ' +
-     (periodoInicial || '(início)') + ' — ' + (periodoFinal || '(fim)') +
-     '.\nReferências lidas (amostra): ' + amostra +
-     '\n\nCalcular usando TODAS as competências importadas (ignorar período)?';
-    if(confirm(msg)){
-     registrosFiltrados = arquivosProcessados.slice();
-     log('Filtro de período ignorado: usando ' + registrosFiltrados.length + ' competência(s).');
-    }else{
-     alert('Limpe os dois campos de período ou corrija o intervalo. Se aparecer "Página X", o PDF não trouxe "REFERÊNCIA/COMPETÊNCIA" legível — tente outro arquivo ou holerite em texto selecionável.');
-     return;
-    }
-   }else{
-    alert('Erro inesperado: nenhum registro com período em branco. Recarregue e processe os PDFs de novo.');
-    return;
-   }
-  }
-
   function dedupePorCompetencia(lista){
    const map = {};
    lista.forEach(function(item){
-    const km = referenciaParaMes(item.referencia);
+    const km = referenciaParaMesIso(item.referencia);
     const chave = km || (String(item.arquivo) + '|' + String(item.referencia));
-    const atual = map[chave];
-    const scoreN = pontuacaoCompetenciaItem(item);
-    const scoreA = atual ? pontuacaoCompetenciaItem(atual) : -1;
-
-    const vAtual = atual ? Number(atual.vencimento || 0) : -1;
-    const vn = Number(item.vencimento || 0);
-
-    if(!atual || scoreN > scoreA || (scoreN === scoreA && vn > vAtual)){
+    const atualMap = map[chave];
+    if(!atualMap){
+     map[chave] = item;
+     return;
+    }
+    if(compararItensCompetenciaPreferirRubricas(item, atualMap) > 0){
      map[chave] = item;
     }
    });
    return Object.values(map);
   }
 
-  const antesDedupe = registrosFiltrados.length;
-  registrosFiltrados = dedupePorCompetencia(registrosFiltrados);
-  if(antesDedupe !== registrosFiltrados.length){
-   log('Mesma competência repetida em várias páginas: mantida 1 linha por mês (' + registrosFiltrados.length + ' de ' + antesDedupe + ').');
-  }
+  let registrosFiltrados = dedupePorCompetencia(arquivosProcessados.slice());
+  mapaPorChave = {};
+  registrosFiltrados.forEach(function(it){
+   mapaPorChave[chaveUnicaCompetencia(it)] = it;
+   if(it.letraAtual === undefined || it.letraAtual === ''){
+    it.letraAtual = 'D';
+   }
+   if(it.letraDevida === undefined || it.letraDevida === ''){
+    it.letraDevida = 'F';
+   }
+  });
 
   let total = 0;
   let ignoradosSemVencimento = 0;
   let linhasSomadas = 0;
 
-  function valoresLinhaProg(itemComp){
-   const vp = Number(itemComp.vencimento || 0);
-   const forcarPct = $('#forcarSoPercentuais').is(':checked');
-
-   const pago = componentesTotaisPago(vp, itemComp, {
-    forcarPctColunasBCDE: forcarPct
-   });
-
-   const vd = vp > 0 ? Number((vp * (1 + percentual * progressao)).toFixed(2)) : 0;
-   const fator = vp > 0 ? vd / vp : 1;
-
-   const quinD = Number((pago.quinPago * fator).toFixed(2));
-   const incD = Number((pago.incPago * fator).toFixed(2));
-   const insD = Number((pago.insPago * fator).toFixed(2));
-   const heD = Number((pago.hePago * fator).toFixed(2));
-
-   const O_pago = pago.totalPago;
-   const O_devido = Number((vd + quinD + incD + insD + heD).toFixed(2));
-
-   const adicFormPago = adicServExtraPorFormula(O_pago);
-   const adicFormDevido = adicServExtraPorFormula(O_devido);
-   const diferenca = Number((O_devido - O_pago).toFixed(2));
-
-   return{
-    diferenca: diferenca,
-    O_pago: O_pago,
-    O_devido: O_devido,
-    vp: vp,
-    vd: vd,
-    quinquenioPago: pago.quinPago,
-    incentivoFuncPago: pago.incPago,
-    insalubridadePago: pago.insPago,
-    horaEspecialPago: pago.hePago,
-    quinquenioDevido: quinD,
-    incentivoFuncDevido: incD,
-    insalubridadeDevido: insD,
-    horaEspecialDevido: heD,
-    adicFormPago: adicFormPago,
-    adicFormDevido: adicFormDevido
-   };
-  }
-
-  function appendDuplaProg(arquivoStr, mesLabelJaEscapado, valores){
+  function appendDuplaProg(arquivoStr, mesLabelJaEscapado, valores, itemRef, chaveEsc){
    const v = valores;
    const traco = '—';
    const heP = v.horaEspecialPago > 0 ? moeda(v.horaEspecialPago) : traco;
    const heD = v.horaEspecialDevido > 0 ? moeda(v.horaEspecialDevido) : traco;
-   $('#resultadoBody').append(`
-    <tr class="linha-pago">
-      <td rowspan="2" class="td-arq">${escHtml(arquivoStr)}</td>
-      <td rowspan="2" class="td-mes">${mesLabelJaEscapado}</td>
-      <td class="td-sit">PAGO 07/${escHtml(letraAtStr)}</td>
-      <td class="td-num">${moeda(v.vp)}</td>
-      <td class="td-num">${moeda(v.quinquenioPago)}</td>
-      <td class="td-num">${moeda(v.incentivoFuncPago)}</td>
-      <td class="td-num">${moeda(v.insalubridadePago)}</td>
-      <td class="td-traco">${heP}</td>
-      <td class="td-num">${moeda(v.O_pago)}</td>
-      <td class="td-num">${moeda(v.adicFormPago)}</td>
-      <td rowspan="2" class="td-dif">${moeda(v.diferenca)}</td>
-    </tr>
-    <tr class="linha-devido">
-      <td class="td-sit">DEVIDO 07/${escHtml(letraDvStr)}</td>
-      <td class="td-num">${moeda(v.vd)}</td>
-      <td class="td-num">${moeda(v.quinquenioDevido)}</td>
-      <td class="td-num">${moeda(v.incentivoFuncDevido)}</td>
-      <td class="td-num">${moeda(v.insalubridadeDevido)}</td>
-      <td class="td-traco">${heD}</td>
-      <td class="td-num">${moeda(v.O_devido)}</td>
-      <td class="td-num">${moeda(v.adicFormDevido)}</td>
-    </tr>`);
+   const adPfP = v.adicIncentProfisPago > 0 ? moeda(v.adicIncentProfisPago) : traco;
+   const adPfD = v.adicIncentProfisDevido > 0 ? moeda(v.adicIncentProfisDevido) : traco;
+   const abP = v.abonoPermanenciaPago > 0 ? moeda(v.abonoPermanenciaPago) : traco;
+   const abD = v.abonoPermanenciaDevido > 0 ? moeda(v.abonoPermanenciaDevido) : traco;
+   const laSel = htmlLetrasOptions(itemRef.letraAtual || 'D');
+   const ldSel = htmlLetrasOptions(itemRef.letraDevida || 'F');
+   const kAttr = escHtml(chaveEsc);
+   const titleArq = escHtml(arquivoStr);
+   $('#resultadoBody').append(
+    '<tr class="linha-pago">' +
+    '<td rowspan="2" class="td-arq td-arq-chk" title="' + titleArq + '"><label class="lbl-chk-comp lbl-chk-so"><input type="checkbox" class="chk-excluir-comp" data-k="' + kAttr + '" aria-label="Selecionar linha"></label></td>' +
+    '<td rowspan="2" class="td-mes">' + mesLabelJaEscapado + '</td>' +
+    '<td class="td-sit">PAGO 07/<select class="sel-letra-tbl" data-k="' + kAttr + '" data-tipo="atual">' + laSel + '</select></td>' +
+    '<td class="td-num">' + moeda(v.vp) + '</td>' +
+    '<td class="td-num">' + moeda(v.quinquenioPago) + '</td>' +
+    '<td class="td-num">' + moeda(v.incentivoFuncPago) + '</td>' +
+    '<td class="td-num">' + moeda(v.insalubridadePago) + '</td>' +
+    '<td class="td-traco">' + heP + '</td>' +
+    '<td class="td-num">' + adPfP + '</td>' +
+    '<td class="td-num">' + abP + '</td>' +
+    '<td class="td-num">' + moeda(v.O_pago) + '</td>' +
+    '<td rowspan="2" class="td-dif">' + moeda(v.diferenca) + '</td>' +
+    '</tr>' +
+    '<tr class="linha-devido">' +
+    '<td class="td-sit">DEVIDO 07/<select class="sel-letra-tbl" data-k="' + kAttr + '" data-tipo="devida">' + ldSel + '</select></td>' +
+    '<td class="td-num">' + moeda(v.vd) + '</td>' +
+    '<td class="td-num">' + moeda(v.quinquenioDevido) + '</td>' +
+    '<td class="td-num">' + moeda(v.incentivoFuncDevido) + '</td>' +
+    '<td class="td-num">' + moeda(v.insalubridadeDevido) + '</td>' +
+    '<td class="td-traco">' + heD + '</td>' +
+    '<td class="td-num">' + adPfD + '</td>' +
+    '<td class="td-num">' + abD + '</td>' +
+    '<td class="td-num">' + moeda(v.O_devido) + '</td>' +
+    '</tr>'
+   );
   }
 
-  function registrarCompetencia(item, refRotuloOverride){
+  function registrarCompetencia(item, refRotuloOverride, anoPct){
+   mapaPorChave[chaveUnicaCompetencia(item)] = item;
    const refUsar = refRotuloOverride !== undefined ? refRotuloOverride : item.referencia;
-   const valores = valoresLinhaProg(item);
-   appendDuplaProg(item.arquivo, rotuloMesCompetencia(refUsar), valores);
+   let anoNum = anoPct;
+   if(anoNum === undefined || anoNum === null || isNaN(anoNum)){
+    const m = extrairAnoMesRef(item.referencia);
+    anoNum = m.ok ? m.ano : new Date().getFullYear();
+   }
+   garantirPctAno(anoNum);
+   const valores = valoresLinhaProgNovo(item, anoNum);
+   appendDuplaProg(item.arquivo, rotuloMesCompetencia(refUsar), valores, item, chaveUnicaCompetencia(item));
    console.log({ referencia: refUsar, item: item, valores: valores });
    total += valores.diferenca;
    linhasSomadas++;
@@ -1017,11 +1852,13 @@ $('#btnCalcular').on('click', function(){
 
   for(idxAno = 0; idxAno < anosOrdenados.length; idxAno++){
    const ano = anosOrdenados[idxAno];
+   garantirPctAno(ano);
    const linhas = porAno[ano].slice();
-   $('#resultadoBody').append(`
-    <tr class="titulo-ano">
-     <td colspan="11">DIFERENÇA PROGRESSÃO HORIZONTAL ${ano}</td>
-    </tr>`);
+   $('#resultadoBody').append(htmlToolbarAno(ano));
+   $('#resultadoBody').append(
+    '<tr class="titulo-ano"><td colspan="12">DIFERENÇA PROGRESSÃO HORIZONTAL ' + ano + '</td></tr>'
+   );
+   $('#resultadoBody').append(htmlBarraPercentuaisAno(ano));
 
    let subtotalAno = 0;
 
@@ -1036,11 +1873,11 @@ $('#btnCalcular').on('click', function(){
    });
 
    meses1a12.forEach(function(L){
-    subtotalAno += registrarCompetencia(L.item);
+    subtotalAno += registrarCompetencia(L.item, undefined, ano);
    });
 
    trezePdf.forEach(function(L){
-    subtotalAno += registrarCompetencia(L.item);
+    subtotalAno += registrarCompetencia(L.item, undefined, ano);
    });
 
    if(trezePdf.length === 0 && meses1a12.length > 0){
@@ -1054,26 +1891,26 @@ $('#btnCalcular').on('click', function(){
 
     const item13 = Object.assign({}, base13.item, {
      arquivo: base13.item.arquivo + ' (13º)',
-     referencia: String(base13.meta.mes).padStart(2, '0') + '/' + ano
+     referencia: '13/' + ano
     });
-    subtotalAno += registrarCompetencia(item13, '13/' + ano);
+    subtotalAno += registrarCompetencia(item13, '13/' + ano, ano);
    }
 
-   $('#resultadoBody').append(`
-    <tr class="footer-ano">
-     <td colspan="10" class="td-num td-sub" style="text-align:right">TOTAL DIFERENÇA ${ano}</td>
-     <td class="td-dif">${moeda(subtotalAno)}</td>
-    </tr>`);
+   $('#resultadoBody').append(
+    '<tr class="footer-ano">' +
+    '<td colspan="11" class="td-num td-sub" style="text-align:right">TOTAL DIFERENÇA ' + ano + '</td>' +
+    '<td class="td-dif">' + moeda(subtotalAno) + '</td></tr>'
+   );
   }
 
   if(refInvalidaRows.length){
-   $('#resultadoBody').append(`
-    <tr class="titulo-ano">
-     <td colspan="11">Competências com referência MM/AAAA não reconhecida</td>
-    </tr>`);
+   $('#resultadoBody').append(
+    '<tr class="titulo-ano"><td colspan="12">Competências com referência MM/AAAA não reconhecida</td></tr>'
+   );
 
    refInvalidaRows.forEach(function(L){
-    registrarCompetencia(L.item);
+    const y = extrairAnoMesRef(L.item.referencia);
+    registrarCompetencia(L.item, undefined, y.ok ? y.ano : new Date().getFullYear());
    });
   }
 
@@ -1084,53 +1921,354 @@ $('#btnCalcular').on('click', function(){
    $('#resultadoFoot').show();
   }
 
-  log('Período utilizado: ' + (periodoInicial || '(sem limite inicial)') + ' até ' + (periodoFinal || '(sem limite final)'));
-  log('Tabela agrupada por ano; em cada ano, após jan–dez, entra 13º (só sintético se não existir PDF 13/AAAA), mesma fórmula dos meses; base salarial = dezembro ou último mês disponível.');
-  log('Total O = SOMA(B:F) no PAGO conforme texto do PDF (valores filtrados) ou só % quando faltarem; proporção igualmente nas linhas DEVIDO (× vdevido÷vpago); diferença = O dev − O pag; ADIC = O÷180×(1+87,5%) só conferência.');
-  if($('#forcarSoPercentuais').is(':checked')){
-   log('Marcado «forçar percentuais»: B–E usam apenas 20% / 50% / 40% do 1101; HE do PDF só se válida.');
-  }
-  log('Competências no filtro: ' + registrosFiltrados.length + (ignoradosSemVencimento ? ' | ignoradas sem 1101: ' + ignoradosSemVencimento : ''));
-  if(linhasSomadas > 0){
-   log('Auditoria do total: ' + linhasSomadas + ' competência(s); média da diferença mensal ~ ' + moeda(total / linhasSomadas) + '.');
-   log('O valor no topo é SOMA(diferença de cada linha). Na planilha “> R$ 3 mil” costuma ser a soma de MUITOS meses/anos — aqui só entram os meses que vieram dos PDFs processados.');
-  }
-  log('Cálculos executados com sucesso');
-  log('Valor total: ' + moeda(total));
+  log('Tabela atualizada. Percentuais por ano na barra cinza; letras (atual / devida) na coluna STATUS. Total da linha = soma de todas as colunas de valores; diferença = total DEVIDO − total PAGO.');
+  log('Competências: ' + registrosFiltrados.length + (ignoradosSemVencimento ? ' | ignoradas sem 1101: ' + ignoradosSemVencimento : '') + ' | Diferença acumulada: ' + moeda(total));
 
   if(ignoradosSemVencimento > 0){
-   log('Dica: se todos caíram aqui, o PDF pode fragmentar o código 1101 — o sistema já tenta texto compacto; confira o console (objeto do evento) ou layout do holerite.');
+   log('Dica: confira extração do 1101 no PDF para competências ignoradas.');
   }
 
-  if(total === 0){
-   log('ATENÇÃO: total zerado. Verifique extração do evento 1101 e letras Atual/Devida no console (F12).');
+  if(exibirMsg){
+   alert('Tabela atualizada.');
   }
-
-  alert('Cálculos executados com sucesso');
  }catch(e){
   console.error(e);
-  log('Erro ao calcular: ' + e.message);
-  alert('Erro ao calcular: ' + e.message);
+  log('Erro ao montar tabela: ' + e.message);
+  alert('Erro ao montar tabela: ' + e.message);
+ }
+}
+
+$(document).on('change', '.pct-sel-ano', function(){
+ const ano = Number($(this).data('ano'));
+ const campo = String($(this).data('campo'));
+ garantirPctAno(ano);
+ pctConfigPorAno[ano][campo] = Number($(this).val());
+ montarTabelaResultados();
+});
+
+$(document).on('change', '.sel-letra-tbl', function(){
+ const k = String($(this).data('k'));
+ const tipo = String($(this).data('tipo'));
+ const it = mapaPorChave[k];
+ if(it){
+  if(tipo === 'atual'){
+   it.letraAtual = String($(this).val());
+  }else{
+   it.letraDevida = String($(this).val());
+  }
+ }
+ montarTabelaResultados();
+});
+
+$('#btnProcessar').on('click', async function(){
+ try{
+  const arquivos = $('#pdfInput')[0].files;
+
+  if(!arquivos || arquivos.length === 0){
+   alert('Selecione ao menos um PDF');
+   return;
+  }
+
+  arquivosProcessados = [];
+  pctConfigPorAno = {};
+
+  for(let i = 0; i < arquivos.length; i++){
+   const arquivo = arquivos[i];
+   const buffer = await arquivo.arrayBuffer();
+   const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+
+   log('PDF carregado: ' + arquivo.name);
+   log('Páginas encontradas: ' + pdf.numPages);
+
+   for(let pagina = 1; pagina <= pdf.numPages; pagina++){
+    const page = await pdf.getPage(pagina);
+    const text = await page.getTextContent();
+
+    const texto = text.items.map(function(item){
+     return item.str;
+    }).join(' ');
+    const textoLinhas = text.items.map(function(item){
+     return item.str;
+    }).join('\n');
+    const textoCompacto = text.items.map(function(item){
+     return item.str;
+    }).join('');
+
+    const referencia = extrairReferencia(texto, textoCompacto, pagina);
+    const vencimento = extrairVencimentoHolerite(textoLinhas, texto, textoCompacto);
+    const rub = extrairRubricasProventos(textoLinhas, textoCompacto, texto, vencimento);
+
+    console.log({ referencia, vencimento, rub });
+
+    arquivosProcessados.push({
+     arquivo: arquivo.name,
+     referencia: referencia,
+     vencimento: vencimento,
+     horaEspecial: rub.horaEspecial ? Number(Number(rub.horaEspecial).toFixed(2)) : 0,
+     adicIncentProfis: 0,
+     abonoPermanencia: rub.abonoPermanencia ? Number(Number(rub.abonoPermanencia).toFixed(2)) : 0,
+     letraAtual: 'D',
+     letraDevida: 'F'
+    });
+
+    log('Competência processada: ' + referencia);
+   }
+  }
+
+  const ajustesMediana = refinarLoteHoleritePorMedianaSalarial(arquivosProcessados);
+  if(ajustesMediana > 0){
+   log('Correção por mediana anual (vencimento outlier + PROFIS ausente): ' + ajustesMediana + ' ajuste(s) em competências.');
+  }
+
+  arquivosProcessados.forEach(function(it){
+   it.adicIncentProfis = sanearAdicIncentProfisExtraido(Number(it.adicIncentProfis || 0), Number(it.vencimento || 0));
+  });
+
+  $('#totalArquivos').text(arquivosProcessados.length);
+
+  log('PDFs processados com sucesso');
+  log('Total de competências carregadas: ' + arquivosProcessados.length);
+  log('Ajuste letras e percentuais por ano na tabela (ou clique em Atualizar tabela / recalcular).');
+  montarTabelaResultados();
+  alert('PDFs processados com sucesso');
+ }catch(e){
+  console.error(e);
+  log('Erro ao processar PDFs: ' + e.message);
+  alert('Erro ao processar PDFs');
  }
 });
 
+$('#btnCalcular').on('click', function(){
+ montarTabelaResultados(true);
+});
+
+function normalizarReferenciaCompetencia(refRaw){
+ const s = String(refRaw || '').trim();
+ if(!s){
+  return null;
+ }
+ let refNorm;
+ const meta = extrairAnoMesRef(s);
+ if(!meta.ok){
+  const n = normalizarMesAnoBr(s);
+  if(!n){
+   return null;
+  }
+  refNorm = n;
+ }else if(meta.isDecimoHolerite){
+  refNorm = '13/' + meta.ano;
+ }else{
+  refNorm = String(meta.mes).padStart(2, '0') + '/' + meta.ano;
+ }
+ return refNorm;
+}
+
+$(document).on('click', '.btn-adicionar-comp-ano', function(){
+ const anoAlvo = Number($(this).closest('tr.toolbar-ano').data('ano'));
+ const $row = $(this).closest('tr.toolbar-ano');
+ const refRaw = String($row.find('.inp-comp-ref-ano').val() || '').trim();
+ const refNorm = normalizarReferenciaCompetencia(refRaw);
+ if(!refNorm){
+  alert('Informe uma referência válida (MM/AAAA ou 13/AAAA).');
+  return;
+ }
+ const meta = extrairAnoMesRef(refNorm);
+ if(meta.ok && Number(meta.ano) !== anoAlvo){
+  alert('A referência pertence ao ano ' + meta.ano + ', não a ' + anoAlvo + '. Use a barra correta do ano.');
+  return;
+ }
+ const venc = converterValor($row.find('.inp-comp-venc-ano').val());
+ if(!venc || venc <= 0){
+  alert('Informe o vencimento (ex.: 1.890,18).');
+  return;
+ }
+ const he = converterValor($row.find('.inp-comp-he-ano').val());
+ const ab = converterValor($row.find('.inp-comp-ab-ano').val());
+
+ arquivosProcessados.push({
+  arquivo: '(manual)',
+  referencia: refNorm,
+  vencimento: Number(Number(venc).toFixed(2)),
+  horaEspecial: he ? Number(Number(he).toFixed(2)) : 0,
+  adicIncentProfis: 0,
+  abonoPermanencia: ab ? Number(Number(ab).toFixed(2)) : 0,
+  letraAtual: 'D',
+  letraDevida: 'F'
+ });
+ $row.find('.inp-comp-ref-ano').val('');
+ $row.find('.inp-comp-venc-ano').val('');
+ $row.find('.inp-comp-he-ano').val('0');
+ $row.find('.inp-comp-ab-ano').val('0');
+ montarTabelaResultados(false);
+ log('Competência manual adicionada: ' + refNorm + ' (ano ' + anoAlvo + ')');
+});
+
+$(document).on('click', '.btn-excluir-comp-ano', function(){
+ const anoAlvo = Number($(this).closest('tr.toolbar-ano').data('ano'));
+ const set = {};
+ $('.chk-excluir-comp:checked').each(function(){
+  set[String($(this).data('k'))] = true;
+ });
+ if(!Object.keys(set).length){
+  alert('Marque ao menos uma competência na coluna Arquivo (checkbox).');
+  return;
+ }
+ const antes = arquivosProcessados.length;
+ arquivosProcessados = arquivosProcessados.filter(function(it){
+  const k = chaveUnicaCompetencia(it);
+  if(!set[k]){
+   return true;
+  }
+  const m = extrairAnoMesRef(it.referencia);
+  if(!m.ok){
+   return true;
+  }
+  return Number(m.ano) !== anoAlvo;
+ });
+ if(arquivosProcessados.length === antes){
+  alert('Nenhuma competência selecionada foi removida (confira se a referência é do ano ' + anoAlvo + ').');
+  return;
+ }
+ montarTabelaResultados(false);
+ log('Removidas competências selecionadas do ano ' + anoAlvo + ': ' + (antes - arquivosProcessados.length) + ' linha(s).');
+});
 
 console.assert(typeof pdfjsLib !== 'undefined', 'PDF.js carregado');
 console.assert(converterValor('1.485,20') === 1485.20, 'Conversão monetária inválida');
+console.assert(Math.abs(escolherValorProventoNaLinha('16,0 698,24 100,00 698,24', 1685) - 698.24) < 0.02, 'Proventos com base igual (ADIC)');
+console.assert(Math.abs(escolherValorProventoNaLinha('x 242,93 y 698,24', 1685) - 698.24) < 0.02, 'Dois valores na linha: usar o provento maior');
+console.assert(Math.abs(escolherValorProventoNaLinha('50,00 60,00 5.000,00', 1685) - 60) < 0.02, 'Outlier com 3+ valores: segundo maior');
 console.assert(extrairReferencia('REFERENCIA 03/2021', '', 1) === '03/2021', 'Referência inválida');
 console.assert((1499.48 - 1485.20).toFixed(2) === '14.28', 'Diferença vencimento inválida');
 (function(){
  const vp = 1485.20;
  const vd = 1499.48;
- const Op = subtotalPlanilhaO(vp);
- const Od = subtotalPlanilhaO(vd);
+ const Op = subtotalPlanilhaO(vp, '09/2021');
+ const Od = subtotalPlanilhaO(vd, '09/2021');
  console.assert(Math.abs(Op - 3118.92) < 0.02 && Math.abs(Od - 3148.91) < 0.02 && Math.abs(Od - Op - 29.99) < 0.02, 'O e diferença set/21');
+ console.assert(Math.abs(subtotalPlanilhaO(1000, '08/2022') - 2100) < 0.02, 'O ago/2022: venc×2,1 (inc. 50% até ago/2022)');
+ console.assert(Math.abs(subtotalPlanilhaO(1000, '09/2022') - 2500) < 0.02, 'O set/2022: venc×2,5 (inc. 90% a partir de set/2022)');
+ console.assert(Math.abs(subtotalPlanilhaO(1000, '07/2022') - 2100) < 0.02, 'O jul/2022: venc×2,1 (inc. 50%)');
  console.assert(Math.abs(adicServExtraPorFormula(Op) - 32.49) < 0.02 && Math.abs(adicServExtraPorFormula(Od) - 32.80) < 0.02, 'ADIC fórmula set/21');
 })();
 (function(){
  const linhaHol = '1101 VENCIMENTO 1.485,20 100,00 0 de 0 1.485,20';
  const vLin = extrairVencimentoHolerite(linhaHol + '\n', linhaHol, linhaHol.replace(/\s+/g,''));
  console.assert(Math.abs(vLin - 1485.20) < 0.02, 'Extração valor repetido Base/Proventos holerite');
+})();
+(function(){
+ const rubAdic = extrairRubricasProventos(
+  'rub\n2093\n',
+  '2093ADICSERVEXTRAESP055,62',
+  ' rub 2093 ADIC. SERV. EXTRA ESP. 55,62 fim ',
+  4000
+ );
+ console.assert(Math.abs(rubAdic.horaEspecial - 55.62) < 0.02, 'HE por ADIC.SERV.EXTRA.ESP. (rótulo fragmentado / colado)');
+})();
+(function(){
+ const hol1468 = '1468 ADIC.SERV.EXTRA.ESP. 8,0 407,96 100,00 0 de 0 407,96';
+ const vp = 1890.18;
+ const he = extrairHoraEspecialDeHolerite(
+  hol1468 + '\n',
+  hol1468.replace(/\s+/g,''),
+  hol1468,
+  vp
+ );
+ console.assert(Math.abs(he - 407.96) < 0.02, 'HE prioriza linha código 1468 (proventos, não horas 8,0)');
+})();
+(function(){
+ const L =
+  '1845 HORA ESPECIAL 1.701,16 100,00 0 de 0 1.701,16\n' +
+  '1468 ADIC.SERV.EXTRA.ESP. 8,0 407,96 100,00 0 de 0 407,96\n';
+ const vp = 4250;
+ const he = extrairHoraEspecialDeHolerite(L + '\n', L.replace(/\s+/g,''), L, vp);
+ console.assert(Math.abs(he - 407.96) < 0.02, 'jan/23 típico: coluna F = ADIC 1468, não max com 1845');
+})();
+(function(){
+ const L =
+  '1229 AD.INCENT.FUNCIONAL 1,0 1.701,16 100,00 0 de 0 1.701,16\n' +
+  '1468 ADIC.SERV.EXTRA.ESP. 8,0 407,96 100,00 0 de 0 407,96\n';
+ const vp = 4250;
+ const rub = extrairRubricasProventos(L + '\n', L.replace(/\s+/g,''), L, vp);
+ console.assert(
+  Math.abs(rub.incentivo - 1701.16) < 0.02 && Math.abs(rub.horaEspecial - 407.96) < 0.02,
+  '1229 = incentivo; 1468 = ADIC.SERV.EXTRA.ESP. (coluna hora especial)'
+ );
+})();
+(function(){
+ const raw =
+  '1229 x 1.701,16 ADICSERVEXTRAESP 1468 407,96 100,00 407,96';
+ const vp = 4000;
+ const marcas = [/ADICSERV(?:I[CÇ](?:O|S))?EXTRAESP/gi];
+ const v = extrairMaiorMoedaMarcadoresFlexAdicEsp(vp, [raw], marcas, 920);
+ console.assert(Math.abs(v - 407.96) < 0.02, 'Flex ADIC: ancorar em 1468, não max(…, 1701,16)');
+})();
+(function(){
+ const holProf = '1157 ADIC.INCENT.PROFIS. 900,0 170,11 100,00 1 de 1 170,11\n';
+ const rubP = extrairRubricasProventos(holProf + '\n', holProf.replace(/\s+/g,''), holProf, 1890.18);
+ console.assert(Math.abs(rubP.adicIncentProfis - 170.11) < 0.02, 'ADIC.INCENT.PROFIS código 1157');
+})();
+(function(){
+ const doisPercentuais =
+  '1157 ADIC.INCENT.PROFIS. 900,0 170,11 226,88 100,00 1 de 1 226,88\n';
+ const rub2 = extrairRubricasProventos(doisPercentuais + '\n', doisPercentuais.replace(/\s+/g,''), doisPercentuais, 1890.18);
+ console.assert(Math.abs(rub2.adicIncentProfis - 170.11) < 0.02, 'PROFIS: dois montantes 9%/12% sem repetir o correto — prefere o menor no faixa típica');
+})();
+(function(){
+ const hol2024 = 'ADICIONAL INCENTIVO PROFIS 1200,0 244,99 100,00 1 de 1 244,99\n';
+ const rub24 = extrairRubricasProventos(hol2024 + '\n', hol2024.replace(/\s+/g,''), hol2024, 2041.85);
+ console.assert(Math.abs(rub24.adicIncentProfis - 244.99) < 0.02, 'PROFIS: rótulo ADICIONAL INCENTIVO PROFIS (ex. 2024) sem 1157 na linha');
+})();
+(function(){
+ console.assert(sanearAdicIncentProfisExtraido(26063, 1890.18) === 0, 'PROFIS: descarta OCR absurdo (ex. matrícula)');
+ console.assert(sanearAdicIncentProfisExtraido(400, 1890.18) === 0, 'PROFIS: descarta faixa ~400 sem ~9/12% do venc.');
+ console.assert(Math.abs(sanearAdicIncentProfisExtraido(173.5, 1890.18) - 173.5) < 0.02, 'PROFIS: mantém perto de 9% do 1101');
+})();
+(function(){
+ const misto =
+  '1229 AD.INCENT.FUNCIONAL 1,0 1.701,16 100,00 0 de 0 1.701,16\n' +
+  '1157 ADIC.INCENT.PROFIS. 900,0 170,11 100,00 1 de 1 170,11\n';
+ const rubM = extrairRubricasProventos(misto + '\n', misto.replace(/\s+/g,''), misto, 1890.18);
+ console.assert(
+  Math.abs(rubM.adicIncentProfis - 170.11) < 0.02 && Math.abs(rubM.incentivo - 1701.16) < 0.02,
+  'PROFIS não pega valor da linha 1229'
+ );
+})();
+(function(){
+ const frag =
+  '1157\nADIC.INCENT.PROFIS.\n900,0\n170,11\n100,00\n0 de 0\n170,11\n';
+ const rubF = extrairRubricasProventos(frag + '\n', frag.replace(/\s+/g,''), frag, 1890.18);
+ console.assert(Math.abs(rubF.adicIncentProfis - 170.11) < 0.02, 'PDF: código 1157 em linha isolada + 9%');
+})();
+(function(){
+ const holAb = '1199 ABONO PERMANENCIA 1,0 850,44 100,00 1 de 1 850,44\n';
+ const rubA = extrairRubricasProventos(holAb + '\n', holAb.replace(/\s+/g,''), holAb, 4000);
+ console.assert(Math.abs(rubA.abonoPermanencia - 850.44) < 0.02, 'ABONO PERMANENCIA código 1199');
+})();
+(function(){
+ const hol1199p = '1199 ADIC.INCENT.PROFIS. 1,0 99,00 100,00 1 de 1 99,00\n';
+ const rub1199 = extrairRubricasProventos(hol1199p + '\n', hol1199p.replace(/\s+/g,''), hol1199p, 2000);
+ console.assert(Math.abs(rub1199.adicIncentProfis - 99) < 0.02, 'PROFIS: 1199 só com rótulo (sem 1157)');
+})();
+(function(){
+ const mix =
+  'ADIC.INCENT.PROFIS.\n' +
+  '1199 ABONO PERMANENCIA 1,0 5.349,64 100,00 1 de 1 5.349,64\n' +
+  '1157 ADIC.INCENT.PROFIS. 900,0 170,11 100,00 1 de 1 170,11\n';
+ const rub = extrairRubricasProventos(mix + '\n', mix.replace(/\s+/g,''), mix, 1890.18);
+ console.assert(Math.abs(rub.adicIncentProfis - 170.11) < 0.02, 'PROFIS: ignorar 1199 quando for ABONO no mesmo bloco PROFIS');
+})();
+(function(){
+ const soAbonoProfis =
+  'ADIC.INCENT.PROFIS.\n' +
+  '1199 ABONO PERMANENCIA 1,0 850,44 100,00 1 de 1 850,44\n';
+ const rub = extrairRubricasProventos(soAbonoProfis + '\n', soAbonoProfis.replace(/\s+/g,''), soAbonoProfis, 4000);
+ console.assert(Math.abs(rub.adicIncentProfis || 0) < 0.02 && Math.abs(rub.abonoPermanencia - 850.44) < 0.02, 'PROFIS: só rótulo + linha 1199 ABONO não vira INCENT.PROFIS');
+})();
+(function(){
+ const L = '1845 HORA ESPECIAL 1.701,16 100,00 0 de 0 1.701,16\n';
+ const he = extrairHoraEspecialDeHolerite(L + '\n', L.replace(/\s+/g,''), L, 4250);
+ console.assert(he === 0, 'HE: sem 1468/2093/ADIC ESP ancorado → 0 (não usar 1845)');
 })();
 
 log('Sistema carregado corretamente');
